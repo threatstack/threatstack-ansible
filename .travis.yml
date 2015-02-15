@@ -17,4 +17,5 @@ script:
 notifications:
   email: false
 env:
-  secure: KRC3V+30bVvKILfxzBB3oobV/9jZxQHhg9pKnd0vyGbByGb/VlwxKpTgIcMfJatb7gvJAm7FSiwiS7tv4x9KrRi7sR7npxFYqjt8njQ0jG1WPjwHfTDW++3j/XpcIcS8grSjnKxKSC7Uy4uEajsE+dhvBtZm1QyUvitf5iQg50M=
+  global:
+    secure: UrKyRN7Iq8DDtQKfVswzwAs1pa7qxuLpXUDR7FzIfE9588Co+/668uvo+qjapkyhGTnNuXHgeD2n9rHEM4Afuyfo3j0rlwkF4qT01fTqXAZgrhk5yW8H1+0bbUxvIT+N4A2N3n13EIJAGYBPWDhQQYtwAj8NEv9kPQndc4Twkbw=
