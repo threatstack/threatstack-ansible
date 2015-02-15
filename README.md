@@ -26,7 +26,7 @@ Role Variables
 	
 Install
 ----------------
-Using ansible galaxy:
+Using ansible galaxy, best for ad-hoc command situations:
 	
 	$ ansible-galaxy install apollocatlin.threatstack
 
@@ -43,13 +43,13 @@ Examples
 	
 	- hosts: all
       roles:
-         - { role: threatstack-ansible, threatstack_deploy_key: XXXXXXXXXXXXX}
+         - { role: apollocatlin.threatstack, threatstack_deploy_key: XXXXXXXXXXXXX}
 
 2) Install Threat Stack agent with custom security policy and custom hostname:
 
     - hosts: servers
       roles:
-    	- role: threatstack-ansible
+    	- role: apollocatlin.threatstack
       	  threatstack_deploy_key: XXXXXXXXXXXXX
       	  threatstack_policy: "My Secure Policy"
       	  threatstack_hostname: SparkServer1
