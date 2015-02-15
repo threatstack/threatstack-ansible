@@ -1,0 +1,9 @@
+[threatstack]
+name=Threat Stack Package Repository
+{% if ansible_distribution == 'Amazon' %}
+baseurl={{threatstack_pkg_url}}/Amazon
+{% else %}
+baseurl={{threatstack_pkg_url}}/CentOS
+{% endif %}
+enabled=1
+gpgcheck=1

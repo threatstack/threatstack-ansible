@@ -1,0 +1,17 @@
+---
+# Setup tasks
+
+- name: Fail if non-Ubuntu debian
+  fail: msg="We do not currently support your distribution"
+  when: ansible_os_family == 'Debian' and ansible_distribution != "Ubuntu"
+
+- name: Run Apt configure and install Threat Stack
+  include: apt_install.yml
+  when: ansible_os_family == 'Debian' and ansible_distribution == 'Ubuntu'
+
+- name: Run Yum Configure and install Threat Stack
+  include: yum_install.yml
+  when: ansible_os_family == 'RedHat'
+
+- name: Fire cloudsight setup
+  include: cloudsight_setup.yml

@@ -1,0 +1,30 @@
+---
+# Cloudsight Setup
+
+- name: Cloudsight setup
+  command: cloudsight setup --deploy-key={{ threatstack_deploy_key | mandatory }} #--policy={{ threatstack_policy | regex_replace(' ', '%20') }} --hostname={{ threatstack_hostname }}
+  register: setup_result
+  creates: /opt/threatstack/cloudsight/config/.secret
+
+- debug: var=setup_result.stdout_lines
+
+- name: fail the play if the previous command did not succeed
+  fail: msg="Cloudsight Install Failed"
+  when: "'FAILED' in setup_result.stderr"
+
+# Test
+- name: Test cloudsight state
+  service:
+    name: cloudsight
+    enabled: yes
+    state: started
+
+# - name: Test tsfim state
+#   service:
+#     name: tsfim
+#     state: started
+#
+# - name: Test tsauditd state
+#   service:
+#     name: tsauditd
+#     state: started

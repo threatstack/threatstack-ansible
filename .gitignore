@@ -1,0 +1,4 @@
+.DS_Store
+ansible.cfg
+hosts
+*.retry

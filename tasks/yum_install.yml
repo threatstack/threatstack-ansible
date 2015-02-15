@@ -1,0 +1,21 @@
+---
+- name: Ensure ThreatStack repo is installed.
+  template:
+    src: threatstack.j2
+    dest: /etc/yum.repos.d/threatstack.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- copy: src=RPM-GPG-KEY-THREATSTACK dest=/APT-GPG-KEY-THREATSTACK owner=root group=root mode=0644
+
+- name: Add ThreatStack repo GPG key.
+  rpm_key:
+    state: present
+    key: /RPM-GPG-KEY-THREATSTACK
+    
+- name: Ensure Agent is installed.
+  yum:
+    name: threatstack-agent
+    state: latest
+    update_cache: yes

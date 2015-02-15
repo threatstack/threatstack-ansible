@@ -1,0 +1,24 @@
+---
+- name: Install setup dependency.
+  apt:
+    name: python-apt
+    update_cache: yes
+    state: installed
+
+- copy: src=APT-GPG-KEY-THREATSTACK dest=/APT-GPG-KEY-THREATSTACK owner=root group=root mode=0644
+
+- name: Add Threat Stack apt repository key.
+  apt_key:
+    file: /APT-GPG-KEY-THREATSTACK
+    state: present
+
+- name: Add Threat Stack apt repository.
+  apt_repository:
+    repo: "deb {{ threatstack_pkg_url }}Ubuntu {{ ansible_distribution_release }} main"
+    state: present
+    update_cache: yes
+
+- name: Ensure Threat Stack is installed.
+  apt:
+    name: threatstack-agent
+    state: installed

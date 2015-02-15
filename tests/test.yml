@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  remote_user: root
+  vars:
+    threatstack_deploy_key: "{{ lookup('env','API_KEY') }}"
+    threatstack_policy: 'TravisPolicy'
+  roles:
+    - threatstack-ansible
