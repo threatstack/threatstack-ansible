@@ -14,7 +14,7 @@ script:
   (echo ''Idempotence test: fail'' && exit 1)
 
 '
-env:
-  secure: BURenN8IIFFnvi5aRy8KSG3H+qZPalGaXJL06lSQF3/6UvWUIPWtY6MOl1YyzaZHFZFWhzct+yHglhEm9zPjzWU+/mmiBypE8Tsh8Uh43ululDP9SPKRMfz3nLBFm3EwqygPRVve7NJ1vXkWDBtjfTMwUK2QPD22A3cya7o4kYk=
 notifications:
   email: false
+env:
+  secure: KRC3V+30bVvKILfxzBB3oobV/9jZxQHhg9pKnd0vyGbByGb/VlwxKpTgIcMfJatb7gvJAm7FSiwiS7tv4x9KrRi7sR7npxFYqjt8njQ0jG1WPjwHfTDW++3j/XpcIcS8grSjnKxKSC7Uy4uEajsE+dhvBtZm1QyUvitf5iQg50M=
