@@ -28,7 +28,7 @@ Install
 ----------------
 Using ansible galaxy:
 	
-	$ ansible-galaxy install apollocatlin.threatstack-ansible
+	$ ansible-galaxy install apollocatlin.threatstack
 
 To install into your playbook roles, use `-p ROLES_PATH` or `--path=ROLES_PATH`
 
