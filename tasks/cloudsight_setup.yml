@@ -4,7 +4,8 @@
 - name: Cloudsight setup
   command: cloudsight setup --deploy-key={{ threatstack_deploy_key | mandatory }} #--policy={{ threatstack_policy | regex_replace(' ', '%20') }} --hostname={{ threatstack_hostname }}
   register: setup_result
-  creates: /opt/threatstack/cloudsight/config/.secret
+  args:
+    creates: /opt/threatstack/cloudsight/config/.secret
 
 - debug: var=setup_result.stdout_lines
 
