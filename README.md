@@ -66,3 +66,4 @@ Apache 2.0
 Author Information
 ------------------
 Apollo Catlin <apollo@threatstack.com>
+Use github issues for bugs to this repo.
