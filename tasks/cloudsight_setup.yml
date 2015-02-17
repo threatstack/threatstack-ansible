@@ -25,7 +25,7 @@
 - name: Cloudsight setup hostname/policy
   command: cloudsight setup --deploy-key={{ threatstack_deploy_key | mandatory }} --hostname={{ threatstack_hostname }}
   register: setup_result
-  when: threatstack_hostname and threastack_policy
+  when: threatstack_hostname and threatstack_policy
   args:
     creates: /opt/threatstack/cloudsight/config/.secret
 
