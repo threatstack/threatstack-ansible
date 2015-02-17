@@ -2,7 +2,10 @@
 - hosts: localhost
   remote_user: root
   vars:
+    timestamp: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
     threatstack_deploy_key: "{{ lookup('env','API_KEY') }}"
-    threatstack_policy: 'TravisPolicy'
+    threatstack_policy: 'travispolicy'
+    threatstack_hostname: 'TravisCI_{{timestamp}}'
+    test_output: false
   roles:
     - threatstack-ansible
