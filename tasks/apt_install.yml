@@ -9,7 +9,7 @@
 
 - name: Add Threat Stack apt repository key.
   apt_key:
-    file: /APT-GPG-KEY-THREATSTACK
+    url: https://app.threatstack.com/APT-GPG-KEY-THREATSTACK
     state: present
 
 - name: Add Threat Stack apt repository.
