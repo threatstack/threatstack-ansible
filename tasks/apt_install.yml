@@ -5,8 +5,6 @@
     update_cache: yes
     state: installed
 
-- copy: src=APT-GPG-KEY-THREATSTACK dest=/APT-GPG-KEY-THREATSTACK owner=root group=root mode=0644
-
 - name: Add Threat Stack apt repository key.
   apt_key:
     url: https://app.threatstack.com/APT-GPG-KEY-THREATSTACK
