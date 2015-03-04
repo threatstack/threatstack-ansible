@@ -29,10 +29,6 @@
   args:
     creates: /opt/threatstack/cloudsight/config/.secret
 
-- name: fail the play if the previous command did not succeed
-  fail: msg="Cloudsight Install Failed"
-  when: "'FAILED' in setup_result.stderr"
-
 # Test
 - name: Test cloudsight state
   service:
