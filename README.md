@@ -42,13 +42,13 @@ Examples
 
 	- hosts: all
       roles:
-         - { role: threatstack, threatstack_deploy_key: XXXXXXXXXXXXX}
+         - { role: apollocatlin.threatstack, threatstack_deploy_key: XXXXXXXXXXXXX}
 
 2) Install Threat Stack agent with custom security policy and custom hostname:
 
     - hosts: servers
       roles:
-    	- role: threatstack
+    	- role: apollocatlin.threatstack
       	  threatstack_deploy_key: XXXXXXXXXXXXX
       	  threatstack_policy: "My Secure Policy"
       	  threatstack_hostname: SparkServer1
