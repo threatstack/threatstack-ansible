@@ -7,7 +7,7 @@ Threat Stack Ansible Role
 
 Ansible Role to deploy the Threat Stack server agent.
 
-[Threatstack @ Ansible Galaxy](https://galaxy.ansible.com/list#/roles/2903)
+[Threatstack @ Ansible Galaxy](https://galaxy.ansible.com/list#/roles/3018)
 
 Platforms
 ---------
