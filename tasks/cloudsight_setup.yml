@@ -3,32 +3,32 @@
 
 - name: Cloudsight setup default
   command: cloudsight setup --deploy-key={{ threatstack_deploy_key | mandatory }}
-  register: setup_result1
-  failed_when: "'FAILED' in setup_result1.stderr"
+  register: setup_result
+  failed_when: setup_result.stderr and 'FAILED' in setup_result.stderr
   when: not threatstack_hostname and not threatstack_policy
   args:
     creates: /opt/threatstack/cloudsight/config/.secret
 
 - name: Cloudsight setup policy
   command: cloudsight setup --deploy-key={{ threatstack_deploy_key | mandatory }} --policy="{{ threatstack_policy}}"
-  register: setup_result2
-  failed_when: "'FAILED' in setup_result2.stderr"
+  register: setup_result
+  failed_when: setup_result.stderr and 'FAILED' in setup_result.stderr
   when: threatstack_policy and not threatstack_hostname
   args:
     creates: /opt/threatstack/cloudsight/config/.secret
 
 - name: Cloudsight setup hostname
   command: cloudsight setup --deploy-key={{ threatstack_deploy_key | mandatory }} --hostname={{ threatstack_hostname }}
-  register: setup_result3
-  failed_when: "'FAILED' in setup_result3.stderr"
+  register: setup_result
+  failed_when: setup_result.stderr and 'FAILED' in setup_result.stderr
   when: threatstack_hostname and not threatstack_policy
   args:
     creates: /opt/threatstack/cloudsight/config/.secret
 
 - name: Cloudsight setup hostname/policy
   command: cloudsight setup --deploy-key={{ threatstack_deploy_key | mandatory }} --policy="{{ threatstack_policy}}" --hostname={{ threatstack_hostname }}
-  register: setup_result4
-  failed_when: "'FAILED' in setup_result4.stderr"
+  register: setup_result
+  failed_when: setup_result.stderr and 'FAILED' in setup_result.stderr
   when: threatstack_hostname and threatstack_policy
   args:
     creates: /opt/threatstack/cloudsight/config/.secret
