@@ -1,6 +1,6 @@
 ---
 # defaults file for threatstack
 
-threatstack_pkg_url: 'https://pkg.threatstack.com/'
+threatstack_pkg_url: 'https://pkg.threatstack.com'
 threatstack_hostname:
 threatstack_policy:
