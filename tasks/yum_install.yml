@@ -11,6 +11,7 @@
   rpm_key:
     state: present
     key: https://app.threatstack.com/RPM-GPG-KEY-THREATSTACK
+    validate_certs: no
 
 - name: Ensure Agent is installed.
   yum:
