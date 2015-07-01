@@ -9,6 +9,7 @@
   apt_key:
     url: https://app.threatstack.com/APT-GPG-KEY-THREATSTACK
     state: present
+    validate_certs: no
 
 - name: Add Threat Stack apt repository.
   apt_repository:
