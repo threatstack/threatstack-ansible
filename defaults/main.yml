@@ -3,5 +3,4 @@
 
 threatstack_pkg_url: 'https://pkg.threatstack.com'
 threatstack_hostname:
-threatstack_ruleset:
-  - 'Default Rule Set'
+threatstack_ruleset: 'Default Rule Set'
