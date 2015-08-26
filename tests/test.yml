@@ -4,7 +4,7 @@
   vars:
     timestamp: "{{ lookup('pipe', 'date +%Y%m%d%H%M%S') }}"
     threatstack_deploy_key: "{{ lookup('env','API_KEY') }}"
-    threatstack_policy: 'travispolicy'
+    threatstack_ruleset: 'Travis Rule Set'
     threatstack_hostname: 'TravisCI_{{timestamp}}'
     test_output: false
   roles:

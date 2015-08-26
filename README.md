@@ -20,7 +20,7 @@ Platforms
 Role Variables
 --------------
 	threatstack_deploy_key: 3306				# Required. Your Cloud Sight API Key
-	threatstack_policy: "My Secure Policy"    	# The Agent's security policy (Recommended that this is set to the 'Default Policy')
+	threatstack_ruleset: "My Secure Rule Set"    	# The Agent's security rule set, will default to "Default Rule Set"
 	threatstack_hostname: SparkServer1      	# The display hostname
 
 Install
@@ -38,20 +38,20 @@ Check out: [Advanced Control over Role Requirements Files](http://docs.ansible.c
 
 Examples
 ----------------
-1) Install Threat Stack agent with the default policy and reports system hostname to threatstack. This is the most basic configuration
+1) Install Threat Stack agent with the default rule set and reports system hostname to threatstack. This is the most basic configuration
 
 	- hosts: all
       roles:
          - { role: apollocatlin.threatstack, threatstack_deploy_key: XXXXXXXXXXXXX}
 
-2) Install Threat Stack agent with custom security policy and custom hostname:
+2) Install Threat Stack agent with custom security rule set and custom hostname:
 
     - hosts: servers
       roles:
     	- role: apollocatlin.threatstack
       	  threatstack_deploy_key: XXXXXXXXXXXXX
-      	  threatstack_policy: "My Secure Policy"
-      	  threatstack_hostname: SparkServer1
+      	  threatstack_ruleset: "My Secure Rule Set"
+      	  threatstack_hostname: web01
 
 Dependencies
 ------------
