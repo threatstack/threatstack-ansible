@@ -8,7 +8,7 @@
 - name: Add Threat Stack apt repository key.
   apt_key:
     url: https://app.threatstack.com/APT-GPG-KEY-THREATSTACK
-    state: present
+    id: 6EE04BD4
     validate_certs: no
 
 - name: Add Threat Stack apt repository.

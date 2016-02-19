@@ -4,3 +4,5 @@
 threatstack_pkg_url: 'https://pkg.threatstack.com'
 threatstack_hostname:
 threatstack_ruleset:
+threatstack_config_dir: '/etc/threatstack'
+threatstack_config: "{{ threatstack_config_dir }}/tsconfig.json"
