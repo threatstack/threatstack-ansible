@@ -1,0 +1,9 @@
+{
+{% if threatstack_hostname %}
+  "hostname": "{{ threatstack_hostname }}",
+{% endif %}
+{% if threatstack_ruleset %}
+  "ruleset": "{{ threatstack_ruleset }}",
+{% endif %}
+  "deploy-key": "{{ threatstack_deploy_key }}"
+}

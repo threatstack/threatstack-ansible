@@ -19,8 +19,8 @@ Platforms
 
 Role Variables
 --------------
-	threatstack_deploy_key: 3306				# Required. Your Cloud Sight API Key
-	threatstack_ruleset: "My Secure Rule Set"    	# The Agent's security rule set, will default to "Default Rule Set"
+	threatstack_deploy_key: 3306							# Required. Your Cloud Sight API Key
+	threatstack_ruleset: "My Secure Rule Set" # The Agent's security rule set, will default to "Default Rule Set"
 	threatstack_hostname: SparkServer1      	# The display hostname
 
 Install
@@ -66,4 +66,4 @@ Apache 2.0
 Author Information
 ------------------
 Apollo Catlin <apollo@threatstack.com>
-Use github issues for bugs to this repo.
+Use github issues for bugs in this repo.
