@@ -2,6 +2,9 @@
 # defaults file for threatstack
 
 threatstack_pkg_url: 'https://pkg.threatstack.com'
+threatstack_pkg_state: installed
+# Set threatstack_pkg_version to a string to install that version
+threatstack_pkg_version:
 threatstack_hostname:
 threatstack_ruleset:
 threatstack_config_dir: '/etc/threatstack'
