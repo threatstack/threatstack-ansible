@@ -19,5 +19,5 @@
 
 - name: Ensure Threat Stack is installed.
   apt:
-    name: threatstack-agent{% if defined threatstack_pkg_version %}={{ threatstack_pkg_version }}{% end %}
+    name: {{ threatstack_pkg }}
     state: {{ threatstack_pkg_state }}
