@@ -1,0 +1,19 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: ansible_playbook
+  require_ansible_repo: true
+  ansible_verbose: true
+  playbook: tests/test.yml
+  hosts: localhost
+
+platforms:
+  - name: ubuntu-12.04
+  - name: ubuntu-14.04
+  - name: debian-7.8
+  - name: centos-6.7
+
+suites:
+  - name: default
