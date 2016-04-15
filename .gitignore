@@ -1,4 +1,5 @@
 .DS_Store
+.kitchen/
 ansible.cfg
 hosts
 *.retry

@@ -15,6 +15,6 @@
 
 - name: Ensure Agent is installed.
   yum:
-    name: threatstack-agent
-    state: latest
+    name: "{{ threatstack_pkg }}"
+    state: "{{ threatstack_pkg_state }}"
     update_cache: yes
