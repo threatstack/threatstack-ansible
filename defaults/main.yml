@@ -9,3 +9,4 @@ threatstack_hostname:
 threatstack_ruleset:
 threatstack_config_dir: '/etc/threatstack'
 threatstack_config: "{{ threatstack_config_dir }}/tsconfig.json"
+threatstack_configure_agent: true

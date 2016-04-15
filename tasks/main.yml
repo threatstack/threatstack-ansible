@@ -15,3 +15,4 @@
 
 - name: Fire cloudsight setup
   include: cloudsight_setup.yml
+  when: threatstack_configure_agent == true
