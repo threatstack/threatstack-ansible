@@ -15,7 +15,6 @@
 - name: Cloudsight - setup default
   command: cloudsight setup --config="{{ threatstack_config }}"
   register: setup_result
-  failed_when: setup_result.stderr and 'FAILED' in setup_result.stderr
   args:
     creates: /opt/threatstack/cloudsight/config/.secret
 
