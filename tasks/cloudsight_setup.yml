@@ -16,7 +16,7 @@
   command: cloudsight setup --config="{{ threatstack_config }}"
   register: setup_result
   args:
-    creates: /opt/threatstack/cloudsight/config/.secret
+    creates: /opt/threatstack/cloudsight/config/.audit
 
 # Test
 - name: Test cloudsight state
