@@ -13,7 +13,7 @@
     mode: 0644
 
 - name: Cloudsight - setup default
-  command: cloudsight setup --config="{{ threatstack_config }}"
+  command: cloudsight setup --config="{{ threatstack_config }}" {{ threatstack_agent_extra_args }}
   register: setup_result
   args:
     creates: /opt/threatstack/cloudsight/config/.audit
