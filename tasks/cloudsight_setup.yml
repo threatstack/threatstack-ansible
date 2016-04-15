@@ -6,7 +6,7 @@
 
 - name: Create ThreatStack Config File
   template:
-    src: templates/config.j2
+    src: config.j2
     dest: "{{ threatstack_config }}"
     owner: root
     group: root
