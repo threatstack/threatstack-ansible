@@ -8,6 +8,8 @@ provisioner:
   ansible_verbose: true
   playbook: tests/test.yml
   hosts: localhost
+  extra_vars:
+    threatstack_deploy_key: <%= ENV['TS_DEPLOY_KEY'] != nil ? ENV['TS_DEPLOY_KEY'] : 'ts_deploy_key' %>
 
 platforms:
   - name: ubuntu-12.04
