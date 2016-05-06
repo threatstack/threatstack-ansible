@@ -10,6 +10,8 @@ provisioner:
   hosts: localhost
   extra_vars:
     threatstack_deploy_key: <%= ENV['TS_DEPLOY_KEY'] != nil ? ENV['TS_DEPLOY_KEY'] : 'ts_deploy_key' %>
+    threatstack_agent_config_args: <%= ENV['TS_CONFIG_ARGS'] %>
+
 
 platforms:
   - name: ubuntu-12.04
