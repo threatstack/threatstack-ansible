@@ -18,7 +18,21 @@
   args:
     creates: /opt/threatstack/cloudsight/config/.audit
 
-# Test
+- name: Create file to track extra Cloudsight config
+  copy:
+    content: "{{ threatstack_agent_config_args }}"
+    dest: /opt/threatstack/cloudsight/config/.config_args
+    owner: root
+    group: root
+    mode: 0644
+  when: threatstack_agent_config_args|default(None) != None
+  register: config_args
+
+- name: Configure extra cloudsight parameters
+  command: "cloudsight config {{ threatstack_agent_config_args }}"
+  when: config_args.changed
+  notify: restart cloudsight
+
 - name: Test cloudsight state
   service:
     name: cloudsight
