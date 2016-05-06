@@ -11,7 +11,10 @@ provisioner:
   extra_vars:
     threatstack_deploy_key: <%= ENV['TS_DEPLOY_KEY'] != nil ? ENV['TS_DEPLOY_KEY'] : 'ts_deploy_key' %>
     threatstack_agent_config_args: <%= ENV['TS_CONFIG_ARGS'] %>
-
+    <% if ENV['TS_PACKAGE_VERSION'] %>
+    # Should be in form threatstack-version=<version>.  ex. threatstack-version=1.4.4.0ubuntu14.0
+    threatstack_pkg: <%= ENV['TS_PACKAGE_VERSION'] %>
+    <% end %>
 
 platforms:
   - name: ubuntu-12.04
