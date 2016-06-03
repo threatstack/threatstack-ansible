@@ -13,6 +13,9 @@
     key: https://app.threatstack.com/RPM-GPG-KEY-THREATSTACK
     validate_certs: no
 
+# NOTE: We do not signal the cloudsight service to restart because the package
+# takes care of this.  The workflow differs between fresh installation
+# installation and upgrades.
 - name: Ensure Agent is installed.
   yum:
     name: "{{ threatstack_pkg }}"
