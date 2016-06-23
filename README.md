@@ -27,11 +27,11 @@ Install
 ----------------
 Using ansible galaxy, best for ad-hoc command situations:
 
-	$ ansible-galaxy install threatstack.threatstack
+	$ ansible-galaxy install threatstack.threatstack-ansible
 
 To install into your playbook roles, use `-p ROLES_PATH` or `--path=ROLES_PATH`
 
-	$ ansible-galaxy install threatstack.threatstack -p /your/project/root/roles
+	$ ansible-galaxy install threatstack.threatstack-ansible -p /your/project/root/roles
 
 Check out: [Advanced Control over Role Requirements Files](http://docs.ansible.com/galaxy.html#advanced-control-over-role-requirements-files)
 
