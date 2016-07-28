@@ -42,13 +42,13 @@ Examples
 
 	- hosts: all
       roles:
-         - { role: threatstack.threatstack, threatstack_deploy_key: XXXXXXXXXXXXX}
+         - { role: threatstack.threatstack-ansible, threatstack_deploy_key: XXXXXXXXXXXXX}
 
 2) Install Threat Stack agent with custom security rule set and custom hostname:
 
     - hosts: servers
       roles:
-    	- role: threatstack.threatstack
+    	- role: threatstack.threatstack-ansible
       	  threatstack_deploy_key: XXXXXXXXXXXXX
       	  threatstack_ruleset: "My Secure Rule Set"
       	  threatstack_hostname: web01
