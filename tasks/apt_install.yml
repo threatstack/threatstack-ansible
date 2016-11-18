@@ -2,6 +2,7 @@
 - name: Install setup dependency.
   apt:
     name: python-apt
+    update_cache: yes
     state: installed
 
 - name: Add Threat Stack apt repository key.
