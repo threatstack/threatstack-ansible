@@ -19,9 +19,17 @@ Platforms
 
 Role Variables
 --------------
-    threatstack_deploy_key: 3306                # Required. Your Cloud Sight API Key
-    threatstack_ruleset: "My Secure Rule Set"   # The Agent's security rule set, will default to "Default Rule Set"
-    threatstack_hostname: SparkServer1          # The display hostname
+The following variables are available for override.
+```
+threatstack_deploy_key:         # Required. Your Cloud Sight API Key
+threatstack_ruleset:            # The Agent's rule set, will default to "Default Rule Set".
+                                # Define multiple rule sets using a comma seperated list.
+threatstack_pkg_url:            # Location of package repo. Only change if you mirror your own.
+threatstack_pkg:                # name of package. Specify package version using "threatstack-agent=X.Y.Z"
+threatstack_hostname:           # The display hostname in the Threat Stack UI
+threatstack_configure_agent:    # Optionally do not configure the host, just install package
+threatstack_agent_config_args:  # Pass optional configuration arguments during agent registration.
+```
 
 Install
 ----------------
@@ -39,19 +47,49 @@ Check out: [Advanced Control over Role Requirements Files](http://docs.ansible.c
 Examples
 ----------------
 1) Install Threat Stack agent with the default rule set and reports system hostname to threatstack. This is the most basic configuration
+```
+- hosts: all
+  roles:
+    - { role: threatstack.threatstack-ansible, threatstack_deploy_key: XXXXXXXXXXXXX}
+```
 
-    - hosts: all
-      roles:
-        - { role: threatstack.threatstack, threatstack_deploy_key: XXXXXXXXXXXXX}
+2) Install Threat Stack agent with custom security rules set and custom hostname:
+```
+- hosts: web-servers
+  roles:
+    - role: threatstack.threatstack-ansible
+      threatstack_deploy_key: XXXXXXXXXXXXX
+      threatstack_ruleset: "Base Rule Set, Custom Rule Set"
+      threatstack_hostname: dev_web01_us-east-1c
+```
 
-2) Install Threat Stack agent with custom security rule set and custom hostname:
+3) Install the Threat Stack agent but do not configure it.  __NOTE: Useful for configuring a base image to be repeatedly deployed with the agent pre-installed.__
+```
+- hosts: aws-image
+  roles:
+    - role: threatstack.threatstack-ansible
+      threatstack_configure_agent: false
+```
 
-    - hosts: servers
-      roles:
-        - role: threatstack.threatstack
-          threatstack_deploy_key: XXXXXXXXXXXXX
-          threatstack_ruleset: "My Secure Rule Set"
-          threatstack_hostname: web01
+4) Configure a host that will run Docker containers. In this example we also
+add an extra Docker specific rule set.
+```
+- hosts: docker-hosts
+  roles:
+    - role: threatstack.threatstack-ansible
+      threatstack_deploy_key: XXXXXXXXXXXXX
+      threatstack_ruleset: "Base Rule Set, Docker Rule Set"
+      threatstack_agent_config_args: "enable_containers=1"
+```
+
+5) Install a particular version of the Threat Stack agent.  Use in situations where you perform controlled rollouts of all new package versions.
+```
+- hosts: hosts
+  roles:
+    - role: threatstack.threatstack-ansible
+      threatstack_deploy_key: XXXXXXXXXXXXX
+      threatstack_pkg: threatstack-agent=1.4.4.0ubuntu14.0
+```
 
 Dependencies
 ------------
