@@ -10,11 +10,9 @@ install:
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 script:
   - ansible-playbook -v -i tests/inventory tests/test.yml --syntax-check
-  - sudo ls -al /opt/threatstack/cloudsight/config
   - ansible-playbook -v -i tests/inventory tests/test.yml --connection=local --sudo
-  - sudo ls -al /opt/threatstack/cloudsight/config
   - ansible-playbook -v -i tests/inventory tests/test.yml --check --diff --connection=local --sudo
-  - sudo ls -al /opt/threatstack/cloudsight/config
+  - "echo 'Sleeping 60 while agent checks in initially and creates .audit.'; sleep 60"
   - "ansible-playbook -v -i tests/inventory tests/test.yml --connection=local --sudo |
     tee /tmp/output.txt; grep -q 'changed=0.*failed=0' /tmp/output.txt && (echo 'Idempotence test: pass' && exit 0) ||
     (echo 'Idempotence test: fail' && exit 1)"
