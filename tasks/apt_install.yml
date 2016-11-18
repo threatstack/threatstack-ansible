@@ -4,6 +4,8 @@
     name: python-apt
     update_cache: yes
     state: installed
+    tags:
+      - travis-non-idempotent
 
 - name: Add Threat Stack apt repository key.
   apt_key:
