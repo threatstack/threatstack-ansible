@@ -71,18 +71,7 @@ Examples
       threatstack_configure_agent: false
 ```
 
-4) Configure a host that will run Docker containers. In this example we also
-add an extra Docker specific rule set.
-```
-- hosts: docker-hosts
-  roles:
-    - role: threatstack.threatstack-ansible
-      threatstack_deploy_key: XXXXXXXXXXXXX
-      threatstack_ruleset: "Base Rule Set, Docker Rule Set"
-      threatstack_agent_config_args: "enable_containers=1"
-```
-
-5) Install a particular version of the Threat Stack agent.  Use in situations where you perform controlled rollouts of all new package versions.
+4) Install a particular version of the Threat Stack agent.  Use in situations where you perform controlled rollouts of all new package versions.
 ```
 - hosts: hosts
   roles:
