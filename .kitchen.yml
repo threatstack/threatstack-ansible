@@ -15,6 +15,9 @@ provisioner:
     # Should be in form threatstack-version=<version>.  ex. threatstack-version=1.4.4.0ubuntu14.0
     threatstack_pkg: <%= ENV['TS_PACKAGE_VERSION'] %>
     <% end %>
+    <% if ENV['TS_RULE_SETS'] %>
+    threatstack_ruleset: "<%= ENV['TS_RULE_SETS'] != nil ? ENV['TS_RULE_SETS'] : 'Base Rule Set' %>"
+    <% end %>
 
 platforms:
   - name: ubuntu-12.04
