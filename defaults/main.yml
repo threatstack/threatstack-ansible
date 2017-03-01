@@ -12,3 +12,8 @@ threatstack_config: "{{ threatstack_config_dir }}/tsconfig.json"
 threatstack_configure_agent: true
 threatstack_agent_extra_args:
 threatstack_agent_config_args:
+
+# Set according to feature plan. https://www.threatstack.com/plans
+# * agent_type="i" - Investigate, Legacy (Basic, Pro, Advanced)
+# * agent_type="m" - Monitor
+threatstack_feature_plan:
