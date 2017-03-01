@@ -3,6 +3,9 @@
   apt:
     name: python-apt
     state: installed
+  apt:
+    name: apt-transport-https
+    state: installed
 
 - name: Add Threat Stack apt repository key.
   apt_key:
