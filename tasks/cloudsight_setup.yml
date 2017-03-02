@@ -20,16 +20,18 @@
 
 - name: Create file to track extra Cloudsight config
   copy:
-    content: "{{ threatstack_agent_config_args }}"
+    content: "{{ threatstack_agent_config_args }} {{threatstack_feature_plan}}"
     dest: /opt/threatstack/cloudsight/config/.config_args
     owner: root
     group: root
     mode: 0644
-  when: threatstack_agent_config_args|default(None) != None
+  when:
+    - threatstack_agent_config_args|default(None) != None
+    - threatstack_feature_plan|default(None) != None
   register: config_args
 
 - name: Configure extra cloudsight parameters
-  command: "cloudsight config {{ threatstack_agent_config_args }}"
+  command: "cloudsight config {{ threatstack_agent_config_args }} {{threatstack_feature_plan}}"
   when: config_args.changed
   notify: restart cloudsight
 
