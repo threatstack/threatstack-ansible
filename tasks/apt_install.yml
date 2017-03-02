@@ -1,8 +1,10 @@
 ---
-- name: Install setup dependency.
+- name: python-apt dependency.
   apt:
     name: python-apt
     state: installed
+
+- name: apt-transport-https dependency.
   apt:
     name: apt-transport-https
     state: installed
