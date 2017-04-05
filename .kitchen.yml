@@ -6,7 +6,7 @@ provisioner:
   name: ansible_playbook
   require_ansible_repo: true
   ansible_verbose: true
-  playbook: tests/test.yml
+  playbook: tests/testkitchen.yml
   hosts: localhost
   extra_vars:
     threatstack_deploy_key: <%= ENV['TS_DEPLOY_KEY'] != nil ? ENV['TS_DEPLOY_KEY'] : 'ts_deploy_key' %>
