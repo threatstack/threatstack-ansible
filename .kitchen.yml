@@ -10,6 +10,9 @@ provisioner:
   hosts: localhost
   extra_vars:
     threatstack_deploy_key: <%= ENV['TS_DEPLOY_KEY'] != nil ? ENV['TS_DEPLOY_KEY'] : 'ts_deploy_key' %>
+    <% if ENV['TS_NO_CONFIG_AGENT']  %>
+    threatstack_configure_agent: false
+    <% end %>
     threatstack_agent_config_args: <%= ENV['TS_CONFIG_ARGS'] %>
     <% if ENV['TS_PACKAGE_VERSION'] %>
     # Should be in form threatstack-version=<version>.  ex. threatstack-version=1.4.4.0ubuntu14.0
