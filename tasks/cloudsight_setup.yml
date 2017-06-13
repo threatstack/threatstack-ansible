@@ -26,8 +26,8 @@
     group: root
     mode: 0644
   when:
-    - threatstack_agent_config_args|default(None) != None
-    - threatstack_feature_plan|default(None) != None
+    - (threatstack_agent_config_args|default(None) != None) or
+      (threatstack_feature_plan|default(None) != None)
   register: config_args
 
 - name: Configure extra cloudsight parameters
