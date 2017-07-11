@@ -1,10 +1,5 @@
 ---
 # Setup tasks
-
-- name: threatstack_package_plan is unset
-  debug: msg="Must set threatstack_package_plan; this will soon become a failure."
-  when: threatstack_feature_plan|default(None) == None
-
 - name: Run Apt configure and install Threat Stack
   include: apt_install.yml
   when: ansible_os_family == 'Debian'

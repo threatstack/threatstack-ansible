@@ -2,7 +2,13 @@
 
 # Cloudsight Setup
 - name: Create Threat Stack Config Directory
-  file: path="{{ threatstack_config_dir }}" state=directory owner=root group=root mode=0644 recurse=yes
+  file:
+    path: "{{ threatstack_config_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0644
+    recurse: yes
 
 - name: Create ThreatStack Config File
   template:
@@ -13,25 +19,25 @@
     mode: 0644
 
 - name: Cloudsight - setup default
-  command: cloudsight setup --config="{{ threatstack_config }}" {{ threatstack_agent_extra_args }}
+  command: cloudsight setup --config={{ threatstack_config }} --agent_type={{ agent_type }} {{ threatstack_agent_extra_args }}
   register: setup_result
   args:
     creates: /opt/threatstack/cloudsight/config/.audit
 
 - name: Create file to track extra Cloudsight config
   copy:
-    content: "{{ threatstack_agent_config_args }} {{threatstack_feature_plan}}"
+    content: "{{ threatstack_agent_config_args }} {{ agent_type }}"
     dest: /opt/threatstack/cloudsight/config/.config_args
     owner: root
     group: root
     mode: 0644
   when:
-    - threatstack_agent_config_args|default(None) != None
-    - threatstack_feature_plan|default(None) != None
+    - threatstack_agent_config_args is undefined
+    - agent_type is undefined
   register: config_args
 
 - name: Configure extra cloudsight parameters
-  command: "cloudsight config {{ threatstack_agent_config_args }} {{threatstack_feature_plan}}"
+  command: "cloudsight config {{ threatstack_agent_config_args }} {{ agent_type }}"
   when: config_args.changed
   notify: restart cloudsight
 
