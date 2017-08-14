@@ -21,6 +21,9 @@
     state: present
     update_cache: yes
 
+# NOTE: We do not signal the cloudsight service to restart because the package
+# takes care of this.  The workflow differs between fresh installation
+# installation and upgrades.
 - name: Ensure Threat Stack is installed.
   apt:
     name: "{{ threatstack_pkg }}"

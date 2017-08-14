@@ -41,6 +41,9 @@
   when: config_args.changed
   notify: restart cloudsight
 
+# NOTE: We do not signal the cloudsight service to restart because the package
+# takes care of this.  The workflow differs between fresh installation
+# installation and upgrades.
 - name: Test cloudsight state
   service:
     name: cloudsight
