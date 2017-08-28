@@ -9,17 +9,16 @@ galaxy_info:
   - name: EL
     versions:
     - all
-    - 5
     - 6
     - 7
-  - name: Fedora
+  - name: Debian
     versions:
     - all
-    - 16
-    - 17
-    - 18
-    - 19
-    - 20
+    - 7
+    - 8
+  - name: Fedora
+    versions:
+    - 25
   - name: Amazon
     versions:
     - all
@@ -28,15 +27,9 @@ galaxy_info:
   - name: Ubuntu
     versions:
     - all
-    - lucid
-    - maverick
-    - natty
-    - oneiric
     - precise
-    - quantal
-    - raring
-    - saucy
     - trusty
+    - xenial
   categories:
   - cloud
   - cloud:ec2
