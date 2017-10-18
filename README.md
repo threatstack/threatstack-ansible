@@ -23,8 +23,8 @@ The following variables are available for override.
 ```
 threatstack_deploy_key:         # Required. Your Cloud Sight API Key
 threatstack_feature_plan:       # Set value to reflect your feature plan. https://www.threatstack.com/plans
-                                # * 'agent_type="m"' - Monitor or Legacy (Basic, Advanced, Pro)
-                                # * 'agent_type="i"' - Investigate
+                                # * 'agent_type="i"' - Investigate or Legacy (Basic, Advanced, Pro)
+                                # * 'agent_type="m"' - Monitor
 threatstack_ruleset:            # The Agent's rule set, will default to "Default Rule Set".
                                 # Define multiple rule sets using a comma seperated list.
 threatstack_pkg_url:            # Location of package repo. Only change if you mirror your own.
