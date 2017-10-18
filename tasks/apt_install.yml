@@ -11,9 +11,8 @@
 
 - name: Add Threat Stack apt repository key.
   apt_key:
-    url: https://app.threatstack.com/APT-GPG-KEY-THREATSTACK
+    keyserver: keyserver.ubuntu.com
     id: 6EE04BD4
-    validate_certs: no
 
 - name: Add Threat Stack apt repository.
   apt_repository:
