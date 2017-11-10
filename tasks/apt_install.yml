@@ -9,11 +9,21 @@
     name: apt-transport-https
     state: installed
 
-- name: Add Threat Stack apt repository key.
-  apt_key:
+- name: Download Threat Stack apt repository key
+  get_url:
     url: https://app.threatstack.com/APT-GPG-KEY-THREATSTACK
+    dest: /tmp/threatstack.gpg
+
+- name: Add Apt signing key on remote server to keyring
+  apt_key:
     id: 6EE04BD4
-    validate_certs: no
+    file: /tmp/threatstack.gpg
+    state: present
+
+- name: Remove threatstack gpg key
+  file:
+    path: /tmp/threatstack.gpg
+    state: absent
 
 - name: Add Threat Stack apt repository.
   apt_repository:
