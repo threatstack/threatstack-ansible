@@ -66,7 +66,7 @@ Examples
       threatstack_hostname: dev_web01_us-east-1c
 ```
 
-3) Install the Threat Stack agent but do not configure it.  __NOTE: Useful for configuring a base image to be repeatedly deployed with the agent pre-installed.__
+3) Install the Threat Stack agent but do not configure it.  __NOTE: Useful for configuring a base image to be repeatedly deployed with the agent pre-installed.__ Refer [ZenDesk article](https://threatstack.zendesk.com/hc/en-us/articles/204289149-Steps-for-Deploying-the-Threat-Stack-Agent-via-Amazon-AMI-s)
 ```
 - hosts: aws-image
   roles:
