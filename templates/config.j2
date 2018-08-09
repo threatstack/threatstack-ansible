@@ -2,8 +2,8 @@
 {% if threatstack_hostname is defined %}
   "hostname": "{{ threatstack_hostname }}",
 {% endif %}
-{% if threatstack_ruleset is defined %}
-  "ruleset": "{{ threatstack_ruleset }}",
+{% if threatstack_ruleset.len() > 0 %}
+  "ruleset": "{{ threatstack_ruleset.join(",") }}"
 {% endif %}
   "deploy-key": "{{ threatstack_deploy_key | mandatory }}"
 }

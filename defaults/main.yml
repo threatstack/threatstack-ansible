@@ -6,7 +6,8 @@ threatstack_pkg_state: installed
 # to set a version of the agent use threatstack-agent=X.Y.Z
 threatstack_pkg:  threatstack-agent
 #threatstack_hostname:
-#threatstack_ruleset:
+threatstack_ruleset:
+  - 'Base Rule Set'
 threatstack_config_dir: '/etc/threatstack'
 threatstack_config: "{{ threatstack_config_dir }}/tsconfig.json"
 threatstack_configure_agent: true
