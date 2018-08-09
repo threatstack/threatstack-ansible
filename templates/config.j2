@@ -3,7 +3,7 @@
   "hostname": "{{ threatstack_hostname }}",
 {% endif %}
 {% if threatstack_ruleset | length > 0 %}
-  "ruleset": "{{ threatstack_ruleset | join(",") }}"
+  "ruleset": "{{ threatstack_ruleset | join(",") }}",
 {% endif %}
   "deploy-key": "{{ threatstack_deploy_key | mandatory }}"
 }
