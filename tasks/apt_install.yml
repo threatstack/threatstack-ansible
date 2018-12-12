@@ -2,12 +2,12 @@
 - name: python-apt dependency.
   apt:
     name: python-apt
-    state: installed
+    state: present
 
 - name: apt-transport-https dependency.
   apt:
     name: apt-transport-https
-    state: installed
+    state: present
 
 - name: Add Threat Stack apt repository key.
   apt_key:
