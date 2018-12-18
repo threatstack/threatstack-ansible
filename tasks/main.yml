@@ -12,10 +12,10 @@
   include: cloudsight_setup.yml
   when:
     - threatstack_configure_agent == true
-    - threatstack_pkg is search("=1.")
+    - threatstack_pkg | regex_search('agent[=-]1.')
 
 - name: 2.x agent setup
   include: tsagent_setup.yml
   when:
     - threatstack_configure_agent == true
-    - threatstack_pkg is search("=2.")
+    - threatstack_pkg | regex_search('agent[=-]2.')
