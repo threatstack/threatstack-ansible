@@ -3,7 +3,7 @@
 # 2.x agent setup
 
 - name: Agent setup
-  command: tsagent setup -url {{ threatstack_url }} -deploy-key {{ threatstack_deploy_key }} -ruleset {{ threatstack_ruleset }} {{ threatstack_agent_extra_args }}
+  command: tsagent setup -url {{ threatstack_url }} -deploy-key {{ threatstack_deploy_key }} -ruleset "{{ threatstack_ruleset | join(",") }}" {{ threatstack_agent_extra_args }}
   register: setup_result
 
 - name: Configure extra agent parameters

@@ -1,4 +1,7 @@
 {
+{% if threatstack_hostname is defined %}
+  "hostname": "{{ threatstack_hostname }}",
+{% endif %}
 {% if threatstack_url is defined %}
   "url": "{{ threatstack_url }}",
 {% endif %}
