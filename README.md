@@ -25,11 +25,11 @@ threatstack_deploy_key:         # Required. Your Cloud Sight API Key
 threatstack_feature_plan:       # Set value to reflect your feature plan. https://www.threatstack.com/plans
                                 # * 'agent_type="i"' - Investigate or Legacy (Basic, Advanced, Pro)
                                 # * 'agent_type="m"' - Monitor
-threatstack_ruleset:            # The Agent's rule set, will default to "Default Rule Set".
+threatstack_ruleset:            # The Agent's rule set, will default to "Base Rule Set".
                                 # Define multiple rule sets using a comma seperated list.
 threatstack_pkg_url:            # Location of package repo. Only change if you mirror your own.
 threatstack_pkg:                # name of package. Specify package version using "threatstack-agent=X.Y.Z"
-threatstack_hostname:           # The display hostname in the Threat Stack UI
+threatstack_url:                # The URL of the Threat Stack webapp. Defaults to https://app.threatstack.com
 threatstack_configure_agent:    # Optionally do not configure the host, just install package
 threatstack_agent_config_args:  # Pass optional configuration arguments during agent registration.
 ```

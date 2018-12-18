@@ -1,6 +1,6 @@
 {
-{% if threatstack_hostname is defined %}
-  "hostname": "{{ threatstack_hostname }}",
+{% if threatstack_url is defined %}
+  "url": "{{ threatstack_url }}",
 {% endif %}
 {% if threatstack_ruleset | length > 0 %}
   "ruleset": "{{ threatstack_ruleset | join(",") }}",

@@ -1,0 +1,18 @@
+---
+
+# 2.x agent setup
+
+- name: Agent setup
+  command: tsagent setup -url {{ threatstack_url }} -deploy-key {{ threatstack_deploy_key }} -ruleset {{ threatstack_ruleset }} {{ threatstack_agent_extra_args }}
+  register: setup_result
+
+- name: Configure extra agent parameters
+  command: "tsagent config --set {{ threatstack_agent_config_args }}"
+  when: config_args.changed
+  notify: restart tsagent
+
+- name: Test agent state
+  service:
+    name: threatstack
+    enabled: yes
+    state: started

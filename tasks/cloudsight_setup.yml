@@ -1,6 +1,7 @@
 ---
 
-# Cloudsight Setup
+# 1.x agent setup
+
 - name: Create Threat Stack Config Directory
   file:
     path: "{{ threatstack_config_dir }}"
@@ -18,8 +19,8 @@
     group: root
     mode: 0644
 
-- name: Cloudsight - setup default
-  command: cloudsight setup --config={{ threatstack_config }} --agent_type={{ agent_type }} {{ threatstack_agent_extra_args }}
+- name: Agent setup
+  command: cloudsight setup --url={{ threatstack_url }} --config={{ threatstack_config }} --agent_type={{ agent_type }} {{ threatstack_agent_extra_args }}
   register: setup_result
   args:
     creates: /opt/threatstack/cloudsight/config/.audit
@@ -41,7 +42,7 @@
   when: config_args.changed
   notify: restart cloudsight
 
-- name: Test cloudsight state
+- name: Test agent state
   service:
     name: cloudsight
     enabled: yes

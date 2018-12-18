@@ -8,6 +8,14 @@
   include: yum_install.yml
   when: ansible_os_family == 'RedHat'
 
-- name: Fire cloudsight setup
+- name: 1.x agent setup
   include: cloudsight_setup.yml
-  when: threatstack_configure_agent == true
+  when:
+    - threatstack_configure_agent == true
+    - threatstack_pkg is search("=1.")
+
+- name: 2.x agent setup
+  include: tsagent_setup.yml
+  when:
+    - threatstack_configure_agent == true
+    - threatstack_pkg is search("=2.")
