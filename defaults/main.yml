@@ -1,7 +1,8 @@
 ---
 # defaults file for threatstack
 
-threatstack_pkg_url: 'https://pkg.threatstack.com'
+threatstack_v1_pkg_url: 'https://pkg.threatstack.com'
+threatstack_v2_pkg_url: 'https://pkg.threatstack.com/v2'
 threatstack_pkg_state: installed
 # to set a version of the agent use threatstack-agent=X.Y.Z
 threatstack_pkg:  threatstack-agent
