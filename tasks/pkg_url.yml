@@ -1,14 +1,10 @@
 ---
-- name: Define v2 variable
-  set_fact:
-    threatstack_v2: threatstack_pkg | regex_search('agent[=-]2.')
-
 - name: Define v1 package URL variable
   set_fact:
     threatstack_pkg_url: "{{ threatstack_v1_pkg_url }}"
-  when: not threatstack_v2
+  when: threatstack_v1
 
 - name: Define v2 package URL variable
   set_fact:
     threatstack_pkg_url: "{{ threatstack_v2_pkg_url }}"
-  when: threatstack_v2
+  when: not threatstack_v1
