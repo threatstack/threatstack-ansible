@@ -2,17 +2,39 @@
 
 # 2.x agent setup
 
-- name: Agent setup
-  command: tsagent setup -url {{ threatstack_url }} -deploy-key {{ threatstack_deploy_key }} -ruleset "{{ threatstack_ruleset | join(",") }}" {{ threatstack_agent_extra_args }}
-  register: setup_result
+- name: Get setup string
+  set_fact:
+    setup_string: tsagent setup -url {{ threatstack_url }} -deploy-key {{ threatstack_deploy_key }} -ruleset "{{ threatstack_ruleset | join(",") }}" {{ threatstack_agent_extra_args }}
 
-- name: Configure extra agent parameters
-  command: "tsagent config --set {{ threatstack_agent_config_args }}"
-  when: config_args.changed
-  notify: restart tsagent
+- name: Get checksum of setup string
+  set_fact:
+    setup_checksum: "{{ setup_string | checksum }}"
+
+- name: Create file to track checksum of setup string
+  copy:
+    content: "{{ setup_checksum }}"
+    dest: /opt/threatstack/etc/.setup_checksum
+    owner: root
+    group: root
+    mode: 0644
+  register: setup_file
+
+- name: Agent setup
+  command: "{{ setup_string }}"
+  register: setup_result
+  changed_when: False
+
+- name: Restart tsagent
+  service: name=threatstack state=restarted
+  when: setup_file.changed
 
 - name: Test agent state
-  service:
-    name: threatstack
-    enabled: yes
-    state: started
+  command: tsagent status
+  register: tsagent_status
+  retries: 5
+  delay: 2
+  until: tsagent_status.rc == 0
+  when: setup_file.changed
+
+- name: Ensure agent is running
+  service: name=threatstack state=started

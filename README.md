@@ -23,10 +23,10 @@ Role Variables
 The following variables are available for override.
 ```
 threatstack_deploy_key:         # Required. Your Cloud Sight API Key
-threatstack_feature_plan:       # REQUIRED FOR VERSIONS 1.x ONLY
-                                # Set value to reflect your feature plan. https://www.threatstack.com/plans
-                                # * 'agent_type="i"' - Investigate or Legacy (Basic, Advanced, Pro)
-                                # * 'agent_type="m"' - Monitor
+threatstack_feature_plan:       # AGENT 1.x ONLY!
+                                #   Required. Set value to reflect your feature plan. https://www.threatstack.com/plans
+                                #   * 'agent_type="i"' - Investigate or Legacy (Basic, Advanced, Pro)
+                                #   * 'agent_type="m"' - Monitor
 threatstack_ruleset:            # Array of agent rule sets, will default to ["Base Rule Set"].
                                 # Define multiple rule sets using a comma seperated list.
 threatstack_pkg_url:            # Location of package repo. Only change if you mirror your own.
@@ -37,7 +37,9 @@ threatstack_pkg:                # Name of package. Specify package version using
 threatstack_url:                # The URL of the Threat Stack webapp. Defaults to https://app.threatstack.com
 threatstack_hostname:           # The display hostname in the Threat Stack UI. Defaults to hostname.
 threatstack_configure_agent:    # Optionally do not configure the host, just install package
-threatstack_agent_config_args:  # Pass optional configuration arguments during agent registration.
+threatstack_agent_extra_args:   # Pass optional configuration arguments during agent registration.
+threatstack_agent_config_args:  # AGENT 1.x ONLY!
+                                #   Pass optional configuration arguments after agent registration.
 ```
 
 Install
