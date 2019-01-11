@@ -37,9 +37,8 @@ threatstack_pkg:                # Name of package. Specify package version using
 threatstack_url:                # The URL of the Threat Stack webapp. Defaults to https://app.threatstack.com
 threatstack_hostname:           # The display hostname in the Threat Stack UI. Defaults to hostname.
 threatstack_configure_agent:    # Optionally do not configure the host, just install package
-threatstack_agent_extra_args:   # Pass optional configuration arguments during agent registration.
-threatstack_agent_config_args:  # AGENT 1.x ONLY!
-                                #   Pass optional configuration arguments after agent registration.
+threatstack_agent_extra_args:   # Pass optional arguments during agent registration.
+threatstack_agent_config_args:  # Pass optional configuration arguments after agent registration.
 ```
 
 Install
