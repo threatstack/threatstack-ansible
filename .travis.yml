@@ -20,3 +20,6 @@ script:
 env:
   global:
     secure: "iCi7Uja9PDxhtJHBSHHxZi8Awj0b/mfdlRdIHLDx51iONQlV4YLfPn/aTx4nD8a91V0WZqg11APIjZZxW/ViuU23qwgUB4MQ80QAn2mL3jRkXzmc9gQR3OZZd9KsPHTFUAOYMbenNFSTYS/PIZykkU6PsAydIe9dZTvLOrozD3I="
+after_failure:
+  - sudo sh -c 'cat /opt/threatstack/log/tsagentd.log' || true
+  - sudo sh -c 'cat /opt/threatstack/cloudsight/logs/cloudsight.log' || true
