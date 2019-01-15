@@ -45,6 +45,10 @@
   register: setup_result
   changed_when: False
 
+- name: Wait 5 seconds
+  pause:
+    seconds: 5
+
 - name: Agent config
   command: "{{ config_string }}"
   when: config_file.changed
