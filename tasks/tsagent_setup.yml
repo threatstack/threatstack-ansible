@@ -53,6 +53,11 @@
   service: name=threatstack state=restarted
   when: setup_file.changed or config_file.changed
 
+- name: Wait 5 seconds
+  pause:
+    seconds: 5
+  when: setup_file.changed or config_file.changed
+
 - name: Test agent state
   command: tsagent status
   register: tsagent_status
