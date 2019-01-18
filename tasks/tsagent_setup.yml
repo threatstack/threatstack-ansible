@@ -69,6 +69,8 @@
   delay: 2
   until: tsagent_status.rc == 0
   when: setup_file.changed or config_file.changed
+  tags:
+    - checkstate
 
 - name: Ensure agent is running
   service: name=threatstack state=started

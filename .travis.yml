@@ -11,7 +11,7 @@ install:
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
 script:
   - ansible-playbook -v -i tests/inventory tests/test.yml --syntax-check
-  - ansible-playbook -v -i tests/inventory tests/test.yml --connection=local --sudo
+  - ansible-playbook -v -i tests/inventory tests/test.yml --connection=local --sudo --skip-tags "checkstate"
   - ansible-playbook -v -i tests/inventory tests/test.yml --check --diff --connection=local --sudo
   - "echo 'Sleeping 60 while agent checks in initially and creates .audit.'; sleep 60"
   - "ansible-playbook -v -i tests/inventory tests/test.yml --connection=local --sudo |
