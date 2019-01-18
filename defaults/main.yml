@@ -1,11 +1,12 @@
 ---
 # defaults file for threatstack
 
-threatstack_pkg_url: 'https://pkg.threatstack.com'
+threatstack_v1_pkg_url: 'https://pkg.threatstack.com'
+threatstack_v2_pkg_url: 'https://pkg.threatstack.com/v2'
 threatstack_pkg_state: installed
-# to set a version of the agent use threatstack-agent=X.Y.Z
+# to set a version of the agent use threatstack-agent=X.Y.Z (Debian) or threatstack-agent-X.Y.Z (RedHat)
 threatstack_pkg:  threatstack-agent
-#threatstack_hostname:
+threatstack_url: https://app.threatstack.com
 threatstack_ruleset:
   - 'Base Rule Set'
 threatstack_config_dir: '/etc/threatstack'
@@ -17,4 +18,4 @@ threatstack_agent_config_args:
 # Set according to feature plan. https://www.threatstack.com/plans
 # * agent_type="i" - Investigate, Legacy (Basic, Pro, Advanced)
 # * agent_type="m" - Monitor
-agent_type: "{{ threatstack_feature_plan | mandatory }}"
+agent_type: "{{ threatstack_feature_plan | default('') }}"

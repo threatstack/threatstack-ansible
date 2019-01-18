@@ -1,5 +1,11 @@
 ---
-# Setup tasks
+- name: Define some facts based on variables
+  include: facts.yml
+
+- name: Ensure package URL is defined
+  include: pkg_url.yml
+  when: threatstack_pkg_url is undefined
+
 - name: Run Apt configure and install Threat Stack
   include: apt_install.yml
   when: ansible_os_family == 'Debian'
@@ -8,6 +14,14 @@
   include: yum_install.yml
   when: ansible_os_family == 'RedHat'
 
-- name: Fire cloudsight setup
+- name: 1.x agent setup
   include: cloudsight_setup.yml
-  when: threatstack_configure_agent == true
+  when:
+    - threatstack_configure_agent == true
+    - threatstack_v1
+
+- name: 2.x agent setup
+  include: tsagent_setup.yml
+  when:
+    - threatstack_configure_agent == true
+    - not threatstack_v1

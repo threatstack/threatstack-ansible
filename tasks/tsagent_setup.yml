@@ -1,0 +1,76 @@
+---
+
+# 2.x agent setup
+
+- name: Get setup string
+  set_fact:
+    setup_string: tsagent setup -url {{ threatstack_url }} -deploy-key {{ threatstack_deploy_key }} -ruleset "{{ threatstack_ruleset | join(",") }}" {{ threatstack_agent_extra_args }}
+
+- name: Get checksum of setup string
+  set_fact:
+    setup_checksum: "{{ setup_string | checksum }}"
+
+- name: Create file to track checksum of setup string
+  copy:
+    content: "{{ setup_checksum }}"
+    dest: /opt/threatstack/etc/.setup_checksum
+    owner: root
+    group: root
+    mode: 0644
+  register: setup_file
+
+- name: Get config string
+  set_fact:
+    config_string: tsagent config -set {{ threatstack_agent_config_args }}
+
+- name: Get checksum of config string
+  set_fact:
+    config_checksum: "{{ config_string | checksum }}"
+
+- debug:
+    msg: "{{ threatstack_agent_config_args }}"
+
+- name: Create file to track checksum of config string
+  copy:
+    content: "{{ config_checksum }}"
+    dest: /opt/threatstack/etc/.config_checksum
+    owner: root
+    group: root
+    mode: 0644
+  register: config_file
+  when: threatstack_agent_config_args != None
+
+- name: Agent setup
+  command: "{{ setup_string }}"
+  register: setup_result
+  changed_when: False
+
+- name: Wait 5 seconds
+  pause:
+    seconds: 5
+
+- name: Agent config
+  command: "{{ config_string }}"
+  when: config_file.changed
+
+- name: Restart tsagent
+  service: name=threatstack state=restarted
+  when: setup_file.changed or config_file.changed
+
+- name: Wait 5 seconds
+  pause:
+    seconds: 5
+  when: setup_file.changed or config_file.changed
+
+- name: Test agent state
+  command: tsagent status
+  register: tsagent_status
+  retries: 5
+  delay: 2
+  until: tsagent_status.rc == 0
+  when: setup_file.changed or config_file.changed
+  tags:
+    - checkstate
+
+- name: Ensure agent is running
+  service: name=threatstack state=started
