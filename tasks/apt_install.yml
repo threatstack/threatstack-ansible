@@ -21,6 +21,13 @@
     state: present
     update_cache: yes
 
+- name: Ensure 2.x is installed when no version specified
+  set_fact:
+    threatstack_pkg: threatstack-agent=2*
+  when:
+    - not threatstack_v1
+    - threatstack_pkg == 'threatstack-agent'
+
 - name: Ensure Threat Stack is installed.
   apt:
     name: "{{ threatstack_pkg }}"
