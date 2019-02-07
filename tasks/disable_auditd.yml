@@ -1,6 +1,6 @@
 ---
-- name: Stop and disable service auditd, if started
-  service:
-    name: auditd
-    state: stopped
-    enabled: false
+- name: Stop service auditd
+  command: service auditd stop
+
+- name: Disable service auditd
+  command: service auditd disable
