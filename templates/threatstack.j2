@@ -3,7 +3,7 @@ name=Threat Stack Package Repository
 {% if ansible_distribution == 'Amazon' %}
 {% if threatstack_v1 %}
 baseurl={{threatstack_pkg_url}}/Amazon
-{% elif ansible_distribution_version == '2' %}
+{% elif ansible_distribution_version == '2' or ansible_kernel is search("\.amzn2\.") %}
 baseurl={{threatstack_pkg_url}}/Amazon/2
 {% else %}
 baseurl={{threatstack_pkg_url}}/Amazon/1
