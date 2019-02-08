@@ -6,6 +6,10 @@
   include: pkg_url.yml
   when: threatstack_pkg_url is undefined
 
+- name: Disable auditd service
+  include: disable_auditd.yml
+  when: ansible_distribution == 'Amazon'
+
 - name: Run Apt configure and install Threat Stack
   include: apt_install.yml
   when: ansible_os_family == 'Debian'
