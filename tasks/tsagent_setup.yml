@@ -27,9 +27,6 @@
   set_fact:
     config_checksum: "{{ config_string | checksum }}"
 
-- debug:
-    msg: "{{ threatstack_agent_config_args }}"
-
 - name: Create file to track checksum of config string
   copy:
     content: "{{ config_checksum }}"
