@@ -8,7 +8,9 @@
 
 - name: Disable auditd service
   include: disable_auditd.yml
-  when: ansible_distribution == 'Amazon'
+  when:
+    - ansible_os_family == 'RedHat'
+    - (ansible_distribution != 'Amazon' or ansible_kernel is search("\.amzn2\."))
 
 - name: Run Apt configure and install Threat Stack
   include: apt_install.yml
