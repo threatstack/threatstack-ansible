@@ -33,8 +33,8 @@
     group: root
     mode: 0644
   when:
-    - threatstack_agent_config_args is undefined
-    - agent_type is undefined
+    - threatstack_agent_config_args is defined
+    - agent_type is defined
   register: config_args
 
 - name: Configure extra cloudsight parameters
