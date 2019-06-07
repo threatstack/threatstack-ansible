@@ -69,7 +69,9 @@ Examples
   roles:
     - role: threatstack.threatstack-ansible
       threatstack_deploy_key: XXXXXXXXXXXXX
-      threatstack_ruleset: "Base Rule Set, Custom Rule Set"
+      threatstack_ruleset: 
+        - 'Base Rule Set'
+        - 'Custom Rule Set'
       threatstack_hostname: dev_web01_us-east-1c
 ```
 
