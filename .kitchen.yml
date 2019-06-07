@@ -29,11 +29,8 @@ provisioner:
     <% end %>
 
 platforms:
-  - name: centos-6.7
-  - name: centos-7.2
-  - name: debian-7.8
-  - name: debian-8.1
-  - name: fedora-25
+  - name: centos-7.5
+  - name: debian-8.11
   - name: ubuntu-16.04
   - name: ubuntu-18.04
 
