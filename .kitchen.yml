@@ -21,6 +21,12 @@ provisioner:
     <% if ENV['TS_RULE_SETS'] %>
     threatstack_ruleset: "<%= ENV['TS_RULE_SETS'] %>"
     <% end %>
+    <% if ENV['TS_HOSTNAME'] %>
+    threatstack_hostname: "<%= ENV['TS_HOSTNAME'] %>"
+    <% end %>
+    <% if ENV['TS_URL'] %>
+    threatstack_url: "<%= ENV['TS_URL'] %>"
+    <% end %>
 
 platforms:
   - name: centos-6.7
@@ -28,8 +34,8 @@ platforms:
   - name: debian-7.8
   - name: debian-8.1
   - name: fedora-25
-  - name: ubuntu-12.04
-  - name: ubuntu-14.04
+  - name: ubuntu-16.04
+  - name: ubuntu-18.04
 
 suites:
   - name: default

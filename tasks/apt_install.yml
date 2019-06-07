@@ -1,9 +1,10 @@
 ---
 - name: Ensure ThreatStack dependencies are installed
   apt:
-    name: "{{ item }}"
+    name: "{{ packages }}"
     state: present
-    loop:
+  vars:
+    packages:
       - python-apt
       - apt-transport-https
 
