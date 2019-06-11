@@ -1,12 +1,12 @@
 ---
 # defaults file for threatstack
 
+threatstack_url: https://app.threatstack.com
 threatstack_v1_pkg_url: 'https://pkg.threatstack.com'
 threatstack_v2_pkg_url: 'https://pkg.threatstack.com/v2'
-threatstack_pkg_state: installed
+threatstack_pkg_state: present
 # to set a version of the agent use threatstack-agent=X.Y.Z (Debian) or threatstack-agent-X.Y.Z (RedHat)
-threatstack_pkg:  threatstack-agent
-threatstack_url: https://app.threatstack.com
+threatstack_pkg: threatstack-agent
 threatstack_ruleset:
   - 'Base Rule Set'
 threatstack_config_dir: '/etc/threatstack'

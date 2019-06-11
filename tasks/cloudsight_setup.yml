@@ -2,7 +2,7 @@
 
 # 1.x agent setup
 
-- name: Create Threat Stack Config Directory
+- name: Create ThreatStack config directory
   file:
     path: "{{ threatstack_config_dir }}"
     state: directory
@@ -11,7 +11,7 @@
     mode: 0644
     recurse: yes
 
-- name: Create ThreatStack Config File
+- name: Create ThreatStack config file
   template:
     src: config.j2
     dest: "{{ threatstack_config }}"
@@ -25,7 +25,7 @@
   args:
     creates: /opt/threatstack/cloudsight/config/.audit
 
-- name: Create file to track extra Cloudsight config
+- name: Create file to track extra cloudsight config
   copy:
     content: "{{ threatstack_agent_config_args }} {{ agent_type }}"
     dest: /opt/threatstack/cloudsight/config/.config_args

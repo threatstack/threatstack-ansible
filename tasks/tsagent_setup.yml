@@ -4,7 +4,7 @@
 
 - name: Get setup string
   set_fact:
-    setup_string: tsagent setup -url {{ threatstack_url }} -deploy-key {{ threatstack_deploy_key }} -ruleset "{{ threatstack_ruleset | join(",") }}" {{ threatstack_agent_extra_args }}
+    setup_string: tsagent setup -url {{ threatstack_url }} -deploy-key {{ threatstack_deploy_key }} -ruleset "{{ threatstack_ruleset | join(",") }}" -hostname "{{ threatstack_hostname | default('') }}" {{ threatstack_agent_extra_args }}
 
 - name: Get checksum of setup string
   set_fact:
@@ -69,5 +69,8 @@
   tags:
     - checkstate
 
-- name: Ensure agent is running
-  service: name=threatstack state=started
+- name: Ensure agent is running and started on boot
+  service: 
+    name: threatstack 
+    state: started 
+    enabled: yes

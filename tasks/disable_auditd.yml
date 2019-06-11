@@ -1,5 +1,5 @@
 ---
-- name: check auditd status
+- name: Check auditd status
   command: service auditd status
   register: auditd_status
   ignore_errors: true

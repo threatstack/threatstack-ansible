@@ -1,5 +1,5 @@
 ---
-- name: Ensure ThreatStack repo is installed.
+- name: Ensure ThreatStack repo is installed
   template:
     src: threatstack.j2
     dest: /etc/yum.repos.d/threatstack.repo
@@ -7,10 +7,10 @@
     group: root
     mode: 0644
 
-- name: Add ThreatStack repo GPG key.
+- name: Add ThreatStack repo GPG key
   rpm_key:
+    key: "{{ threatstack_url }}/RPM-GPG-KEY-THREATSTACK"
     state: present
-    key: https://app.threatstack.com/RPM-GPG-KEY-THREATSTACK
     validate_certs: no
 
 - name: Ensure 2.x is installed when no version specified
@@ -20,7 +20,7 @@
     - not threatstack_v1
     - threatstack_pkg == 'threatstack-agent'
 
-- name: Ensure Agent is installed.
+- name: Ensure Agent is installed
   yum:
     name: "{{ threatstack_pkg }}"
     state: "{{ threatstack_pkg_state }}"

@@ -1,5 +1,5 @@
 ---
-- name: Define some facts based on variables
+- name: Define facts based on variables
   include: facts.yml
 
 - name: Ensure package URL is defined
@@ -12,11 +12,11 @@
     - ansible_os_family == 'RedHat'
     - (ansible_distribution != 'Amazon' or ansible_kernel is search("\.amzn2\."))
 
-- name: Run Apt configure and install Threat Stack
+- name: Run apt configure and install ThreatStack
   include: apt_install.yml
   when: ansible_os_family == 'Debian'
 
-- name: Run Yum Configure and install Threat Stack
+- name: Run yum configure and install ThreatStack
   include: yum_install.yml
   when: ansible_os_family == 'RedHat'
 
