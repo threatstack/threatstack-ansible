@@ -37,10 +37,17 @@
   register: config_file
   when: threatstack_agent_config_args != None
 
+- name: Ensure ThreatStack is stopped
+  service:
+    name: threatstack
+    state: stopped
+  when: setup_file.changed or config_file.changed
+
 - name: Agent setup
   command: "{{ setup_string }}"
   register: setup_result
   changed_when: False
+  when: setup_file.changed
 
 - name: Wait 5 seconds
   pause:
