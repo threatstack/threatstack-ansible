@@ -10,6 +10,10 @@
   set_fact:
     setup_checksum: "{{ setup_string | checksum }}"
 
+- name: Get agent registration status
+  command: tsagent info
+  register: tsagent_info_cmd
+
 - name: Create file to track checksum of setup string
   copy:
     content: "{{ setup_checksum }}"
@@ -47,7 +51,10 @@
   command: "{{ setup_string }}"
   register: setup_result
   changed_when: False
-  when: setup_file.changed
+  until: setup_result is succeeded
+  retries: 3
+  delay: 10
+  when: setup_file.changed or (tsagent_info_cmd.stdout.find('You must register your agent') != -1)
 
 - name: Wait 5 seconds
   pause:
