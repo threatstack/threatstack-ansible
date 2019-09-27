@@ -19,6 +19,10 @@
     group: root
     mode: 0644
 
+- name: Agent config - optional
+  command: cloudsight config {{ threatstack_agent_optional_configs }} 
+  when: (threatstack_agent_optional_configs is defined) and (threatstack_agent_optional_configs|length > 0)
+
 - name: Agent setup
   command: cloudsight setup --url={{ threatstack_url }} --config={{ threatstack_config }} --agent_type={{ agent_type }} {{ threatstack_agent_extra_args }}
   register: setup_result
