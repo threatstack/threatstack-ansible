@@ -27,7 +27,7 @@ provisioner:
     <% if ENV['TS_URL'] %>
     threatstack_url: "<%= ENV['TS_URL'] %>"
     <% end %>
-    <% if ENV['TS_URL'] %>
+    <% if ENV['TS_FEATURE_PLAN'] %>
     threatstack_feature_plan: "<%= ENV['TS_FEATURE_PLAN'] %>"
     <% end %>
 
