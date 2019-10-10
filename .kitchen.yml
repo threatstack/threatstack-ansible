@@ -27,9 +27,15 @@ provisioner:
     <% if ENV['TS_URL'] %>
     threatstack_url: "<%= ENV['TS_URL'] %>"
     <% end %>
+    <% if ENV['TS_URL'] %>
+    threatstack_feature_plan: "<%= ENV['TS_FEATURE_PLAN'] %>"
+    <% end %>
+
 
 platforms:
   - name: centos-7.5
+    transport:
+      max_ssh_sessions: 6
   - name: debian-8.11
   - name: ubuntu-16.04
   - name: ubuntu-18.04
