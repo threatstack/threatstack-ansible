@@ -1,7 +1,7 @@
 ---
 - name: Check if agent is v1.x
   set_fact:
-    threatstack_v1_string: "{{ threatstack_pkg | regex_search('agent[=-]1\\.') }}"
+    threatstack_v1_string: "{{ threatstack_pkg | regex_search('threatstack-agent[=-]1\\.|^1\\.') }}"
 
 - name: Define v1 variable
   set_fact:
