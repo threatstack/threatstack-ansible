@@ -10,6 +10,12 @@
   set_fact:
     setup_checksum: "{{ setup_string | checksum }}"
 
+- name: Get agent registration status
+  command: tsagent info
+  check_mode: no # Cannot skip this step in check mode.
+  register: tsagent_info_cmd
+  changed_when: False  # Info only so shouldn't be captured as a change.
+
 - name: Create file to track checksum of setup string
   copy:
     content: "{{ setup_checksum }}"
@@ -47,7 +53,12 @@
   command: "{{ setup_string }}"
   register: setup_result
   changed_when: False
-  when: setup_file.changed
+  until: setup_result is succeeded
+  retries: 3
+  delay: 10
+  # We want to run setup if the setup configuration has changed, or if we detect the agent has
+  # not completed registration (e.g., a prior, failed ansible run).
+  when: (setup_file.changed) or (tsagent_info_cmd.stdout.find('You must register your agent') != -1)
 
 - name: Wait 5 seconds
   pause:
@@ -66,12 +77,13 @@
     seconds: 5
   when: setup_file.changed or config_file.changed
 
-- name: Test agent state
+- name: Get agent state
   command: tsagent status
   register: tsagent_status
   retries: 5
   delay: 2
-  until: tsagent_status.rc == 0
+  until: tsagent_status is succeeded
+  changed_when: False
   when: setup_file.changed or config_file.changed
   tags:
     - checkstate
