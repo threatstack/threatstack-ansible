@@ -33,13 +33,15 @@
     group: root
     mode: 0644
   when:
-    - threatstack_agent_config_args is undefined
-    - agent_type is undefined
+    - threatstack_agent_config_args is defined
+    - agent_type is defined
   register: config_args
 
 - name: Configure extra cloudsight parameters
   command: "cloudsight config {{ threatstack_agent_config_args }} {{ agent_type }}"
-  when: config_args.changed
+  when: 
+    - config_args.changed
+    - (threatstack_agent_config_args is defined) and (threatstack_agent_config_args != None)
   notify: restart cloudsight
 
 - name: Test agent state
