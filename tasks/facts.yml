@@ -12,4 +12,5 @@
     msg: "threatstack_feature_plan is mandatory for 1.x agents!"
   when:
     - threatstack_v1
+    - threatstack_configure_agent
     - agent_type == ''
