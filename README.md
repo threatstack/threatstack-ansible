@@ -89,7 +89,7 @@ Examples
   roles:
     - role: threatstack.threatstack-ansible
       threatstack_deploy_key: XXXXXXXXXXXXX
-      threatstack_pkg: threatstack-agent=1.4.4.0ubuntu14.0
+      threatstack_pkg: threatstack-agent=1.9.0.0ubuntu14.0
 ```
 
 Dependencies
@@ -104,5 +104,8 @@ Apache 2.0
 
 Author Information
 ------------------
-Apollo Catlin <apollo@threatstack.com>
+See [AUTHORS](./AUTHORS.md)
+
+Issues
+------
 Use github issues for bugs in this repo.
