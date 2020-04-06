@@ -22,19 +22,19 @@ Role Variables
 --------------
 The following variables are available for override.
 
-| Variable                      | Type    | Default                     | Required | Description                                                                                                                                       |
-|-------------------------------|---------|-----------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| threatstack_deploy_key        | String  |                             | True     | Your TS deploy key.                                                                                                                               |
-| threatstack_feature_plan      | String  | i                           |          | TS Feature Plan. "i" for investigate is default. Can specify "m" for montior.                                                                     |
-| threatstack_ruleset           | Array   | ["Base Rule Set"]           |          | Array of rulesets to apply to hosts.                                                                                                              |
-| threatstack_pkg_url           | String  | Depends on version          |          | Location of package repo. Only change if you mirror your own.                                                                                     |
-| threatstack_pkg               | String  | threatstack-agent           |          | Name of package. Specify package version using `"threatstack-agent=X.Y.Z"` (Debian/Ubuntu) or `"threatstack-agent-X.Y.Z"` (RedHat/CentOS/Amazon). |
-| threatstack_pkg_validate      | Boolean | yes                         |          | Should packages be validated? We default to yes, but if you repackage anything you may need to change this.                                       |
-| threatstack_url               | String  | https://app.threatstack.com |          | The URL endpoint for Threat Stack. This should not change.                                                                                        |
-| threatstack_hostname          | String  |                             |          | The display hostname in the Threat Stack UI. Defaults to hostname.                                                                                |
-| threatstack_configure_agent   | Boolean | true                        |          | Set to false to not configure the host, just install the package.                                                                                 |
-| threatstack_agent_extra_args  | String  |                             |          | Pass optional arguments during agent registration.                                                                                                |
-| threatstack_agent_config_args | String  |                             |          | Pass optional configuration arguments after agent registration.                                                                                   |
+| Variable                      | Type    | Default                     | Required  | Description                                                                                                                                       |
+|-------------------------------|---------|-----------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| threatstack_deploy_key        | String  |                             | Yes       | Your TS deploy key.                                                                                                                               |
+| threatstack_feature_plan      | String  |                             | Yes if 1x | (Agent 1.x only) TS Feature Plan. "i" for investigate/"m" for montior.                                                                            |
+| threatstack_ruleset           | Array   | ["Base Rule Set"]           |           | Array of rulesets to apply to hosts.                                                                                                              |
+| threatstack_pkg_url           | String  | Depends on version          |           | Location of package repo. Only change if you mirror your own.                                                                                     |
+| threatstack_pkg               | String  | threatstack-agent           |           | Name of package. Specify package version using `"threatstack-agent=X.Y.Z"` (Debian/Ubuntu) or `"threatstack-agent-X.Y.Z"` (RedHat/CentOS/Amazon). |
+| threatstack_pkg_validate      | Boolean | yes                         |           | Should packages be validated? We default to yes, but if you repackage anything you may need to change this.                                       |
+| threatstack_url               | String  | https://app.threatstack.com |           | The URL endpoint for Threat Stack. This should not change.                                                                                        |
+| threatstack_hostname          | String  |                             |           | The display hostname in the Threat Stack UI. Defaults to hostname.                                                                                |
+| threatstack_configure_agent   | Boolean | true                        |           | Set to false to not configure the host, just install the package.                                                                                 |
+| threatstack_agent_extra_args  | String  |                             |           | Pass optional arguments during agent registration.                                                                                                |
+| threatstack_agent_config_args | String  |                             |           | Pass optional configuration arguments after agent registration.                                                                                   |
 
 Install
 ----------------

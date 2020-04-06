@@ -19,4 +19,4 @@ threatstack_agent_config_args:
 # Set according to feature plan. https://www.threatstack.com/plans
 # * agent_type="i" - Investigate, Legacy (Basic, Pro, Advanced)
 # * agent_type="m" - Monitor
-agent_type: "{{ threatstack_feature_plan | default('i') }}"
+agent_type: "{{ threatstack_feature_plan | default('') }}"
