@@ -12,7 +12,7 @@
   apt_key:
     url: "{{ threatstack_url }}/APT-GPG-KEY-THREATSTACK"
     id: 6EE04BD4
-    validate_certs: no
+    validate_certs: {{ threatstack_pkg_validate }}
 
 - name: Add ThreatStack apt repository
   apt_repository:
