@@ -11,7 +11,7 @@
   rpm_key:
     key: "{{ threatstack_url }}/RPM-GPG-KEY-THREATSTACK"
     state: present
-    validate_certs: no
+    validate_certs: "{{ threatstack_pkg_validate | bool }}"
 
 - name: Ensure 2.x is installed when no version specified
   set_fact:
