@@ -25,3 +25,11 @@
     name: "{{ threatstack_pkg }}"
     state: "{{ threatstack_pkg_state }}"
     update_cache: yes
+  when: threatstack_pkg is not defined
+
+- name: Ensure Agent specified version is installed
+  yum:
+    name: "{{ threatstack_pkg }}-{{threatstack_pkg_version}}"
+    state: "{{ threatstack_pkg_state }}"
+    update_cache: yes
+  when: threatstack_pkg_version is defined
