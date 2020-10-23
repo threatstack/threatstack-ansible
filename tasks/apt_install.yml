@@ -14,21 +14,11 @@
     id: 6EE04BD4
     validate_certs: "{{ threatstack_pkg_validate | bool }}"
 
-- name: Add Ubuntu ThreatStack apt repository
+- name: Add ThreatStack apt repository
   apt_repository:
     repo: "deb {{ threatstack_pkg_url }}/Ubuntu {{ ansible_distribution_release }} main"
     state: present
     update_cache: yes
-  when:
-    - when dry_run is undefined
-
-- name: Add Ubuntu ThreatStack apt repository dry run
-  apt_repository:
-    repo: "deb {{ threatstack_pkg_url }} {{ ansible_distribution_release }} {{package_branch}}"
-    state: present
-    update_cache: yes
-  when:
-    - when dry_run is defined
 
 - name: Ensure 2.x is installed when no version specified
   set_fact:
@@ -37,6 +27,14 @@
     - not threatstack_v1
     - threatstack_pkg == 'threatstack-agent'
 
-- name: Ensure ThreatStack latest is installed
+- name: Ensure ThreatStack is installed
   apt:
     name: "{{ threatstack_pkg }}"
+    state: "{{ threatstack_pkg_state }}"
+  when: threatstack_pkg is not defined
+
+- name: Ensure ThreatStack specified version is installed
+  apt:
+    name: "{{ threatstack_pkg }}={{threatstack_pkg_version}}"
+    state: "{{ threatstack_pkg_state }}"
+  when: threatstack_pkg is defined
