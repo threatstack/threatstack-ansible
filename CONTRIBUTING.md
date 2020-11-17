@@ -1,4 +1,4 @@
-Contributing to Threat Stack Agent Ansible Role 
+Contributing to Threat Stack Agent Ansible Role
 =============================
 
 We encourage anyone to provide enchancements/fixes to this repository. Simply fork, commit, and then open a PR back to the parent repository.
