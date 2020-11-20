@@ -32,4 +32,13 @@
     name: "{{ threatstack_pkg }}-{{threatstack_pkg_version}}"
     state: "{{ threatstack_pkg_state }}"
     update_cache: yes
-  when: threatstack_pkg_version is defined 
+  when: threatstack_pkg_version is defined
+
+- name: Stop and disable ThreatStack if not configured
+  become: yes
+  service:
+    name: threatstack
+    state: stopped
+    enabled: no
+  when:
+    - threatstack_agent_disable_service | bool
