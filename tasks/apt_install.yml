@@ -37,4 +37,4 @@
   apt:
     name: "{{ threatstack_pkg }}={{threatstack_pkg_version}}"
     state: "{{ threatstack_pkg_state }}"
-  when: threatstack_pkg_version is defined 
+  when: threatstack_pkg_version is defined
