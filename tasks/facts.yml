@@ -5,7 +5,7 @@
 
 - name: Define v1 variable
   set_fact:
-    threatstack_v1: "{{ threatstack_v1_string != '' }}"
+    threatstack_v1: "{{ (threatstack_v1_string != '') | bool }}"
 
 - name: Ensure agent_type is defined
   fail:

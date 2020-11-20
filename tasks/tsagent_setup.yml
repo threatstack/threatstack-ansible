@@ -70,7 +70,7 @@
 
 - name: Restart tsagent
   service: name=threatstack state=restarted
-  when: setup_file.changed or config_file.changed
+  when: (setup_file.changed or config_file.changed) and not threatstack_agent_disable_service | bool
 
 - name: Wait 5 seconds
   pause:
@@ -93,3 +93,4 @@
     name: threatstack
     state: started
     enabled: yes
+  when: not threatstack_agent_disable_service | bool
