@@ -106,3 +106,8 @@ See [AUTHORS](./AUTHORS.md)
 Issues
 ------
 Use github issues for bugs in this repo.
+
+Contributing enhancements/fixes
+-------------------------------
+See the [CONTRIBUTING document](CONTRIBUTING.md) for details.
+
