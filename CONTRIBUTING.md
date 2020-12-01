@@ -3,7 +3,6 @@ Contributing to Threat Stack Agent Ansible Role
 
 We encourage anyone to provide enchancements/fixes to this repository. Simply fork, commit, and then open a PR back to the parent repository.
 
-
 ### What makes a good PR?
 
 * Make sure you update the README.md with any new/removed/changed values parameters.

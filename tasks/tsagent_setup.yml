@@ -1,6 +1,6 @@
 ---
 
-# 2.x agent setup
+# agent setup
 
 - name: Get setup string
   set_fact:

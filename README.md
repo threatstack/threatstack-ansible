@@ -1,6 +1,12 @@
 Threat Stack Ansible Role
 =========
 
+>>>
+**Threat Stack agent 1.x support is now removed**
+
+This version of the ansible role only supports Threat Stack agent 2.x or higher. For support of 1.x agent versions, please use the 4.x versions of the role.
+>>>
+
 [![Build Status](https://travis-ci.org/threatstack/threatstack-ansible.svg?branch=master)][travis]
 
 [travis]: https://travis-ci.org/threatstack/threatstack-ansible
@@ -24,8 +30,7 @@ The following variables are available for override.
 
 | Variable                          | Type    | Default                     | Required  | Description                                                                                                                                       |
 |-----------------------------------|---------|-----------------------------|-----------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| threatstack_deploy_key            | String  |                             | Yes       | Your TS deploy key.                                                                                                                               |
-| threatstack_feature_plan          | String  |                             | Yes if 1x | (Agent 1.x only) TS Feature Plan. "i" for investigate/"m" for montior.                                                                            |
+| threatstack_deploy_key            | String  |                             | Yes       | Your TS deploy key.                                                                                                                 |
 | threatstack_ruleset               | Array   | ["Base Rule Set"]           |           | Array of rulesets to apply to hosts.                                                                                                              |
 | threatstack_pkg_url               | String  | Depends on version          |           | Location of package repo. Only change if you mirror your own.                                                                                     |
 | threatstack_pkg                   | String  | threatstack-agent           |           | Name of package. Specify package version using `"threatstack-agent=X.Y.Z"` (Debian/Ubuntu) or `"threatstack-agent-X.Y.Z"` (RedHat/CentOS/Amazon). |
@@ -86,7 +91,7 @@ Examples
   roles:
     - role: threatstack.threatstack-ansible
       threatstack_deploy_key: XXXXXXXXXXXXX
-      threatstack_pkg: threatstack-agent=1.9.0.0ubuntu14.0
+      threatstack_pkg: threatstack-agent=2.0.0.0ubuntu20.0
 ```
 
 Dependencies
