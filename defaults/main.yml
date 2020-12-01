@@ -8,8 +8,6 @@ threatstack_pkg_validate: yes
 threatstack_pkg: threatstack-agent
 threatstack_ruleset:
   - 'Base Rule Set'
-threatstack_config_dir: '/etc/threatstack'
-threatstack_config: "{{ threatstack_config_dir }}/tsconfig.json"
 threatstack_configure_agent: true
 threatstack_agent_extra_args:
 threatstack_agent_config_args:
