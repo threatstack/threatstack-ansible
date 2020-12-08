@@ -3,3 +3,4 @@
 ansible.cfg
 hosts
 *.retry
+Gemfile.lock

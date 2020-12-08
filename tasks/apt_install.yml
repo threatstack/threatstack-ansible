@@ -26,13 +26,13 @@
   when:
     - threatstack_pkg == 'threatstack-agent'
 
-- name: Ensure ThreatStack is installed
+- name: Ensure agent is installed
   apt:
     name: "{{ threatstack_pkg }}"
     state: "{{ threatstack_pkg_state }}"
   when: threatstack_pkg_version is not defined
 
-- name: Ensure ThreatStack specified version is installed
+- name: Ensure agent specified version is installed
   apt:
     name: "{{ threatstack_pkg }}={{threatstack_pkg_version}}"
     state: "{{ threatstack_pkg_state }}"
