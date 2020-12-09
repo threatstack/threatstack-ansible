@@ -33,7 +33,7 @@
     update_cache: yes
   when: threatstack_pkg_version is defined
 
-- name: yum -- Stop and disable agent if not configured
+- name: yum -- Stop and disable agent if not to be configured
   become: yes
   service:
     name: threatstack

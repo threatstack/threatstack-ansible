@@ -38,7 +38,7 @@
     state: "{{ threatstack_pkg_state }}"
   when: threatstack_pkg_version is defined
 
-- name: apt -- Stop and disable agent if not configured
+- name: apt -- Stop and disable agent if not to be configured
   become: yes
   service:
     name: threatstack
