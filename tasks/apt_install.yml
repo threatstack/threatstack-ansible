@@ -1,5 +1,5 @@
 ---
-- name: Ensure ThreatStack dependencies are installed
+- name: apt -- Ensure agent dependencies are installed
   apt:
     name: "{{ packages }}"
     state: present
@@ -8,37 +8,37 @@
       - python-apt
       - apt-transport-https
 
-- name: Add ThreatStack apt repository key
+- name: apt -- Add agent repository key
   apt_key:
     url: "{{ threatstack_url }}/APT-GPG-KEY-THREATSTACK"
     id: 6EE04BD4
     validate_certs: "{{ threatstack_pkg_validate | bool }}"
 
-- name: Add ThreatStack apt repository
+- name: apt -- Add agent repository
   apt_repository:
     repo: "deb {{ threatstack_pkg_url }}/Ubuntu {{ ansible_distribution_release }} main"
     state: present
     update_cache: yes
 
-- name: Ensure latest agent is installed when no version specified
+- name: apt -- Ensure latest agent is installed when no version specified
   set_fact:
     threatstack_pkg: threatstack-agent=2*
   when:
     - threatstack_pkg == 'threatstack-agent'
 
-- name: Ensure agent is installed
+- name: apt -- Ensure agent is installed
   apt:
     name: "{{ threatstack_pkg }}"
     state: "{{ threatstack_pkg_state }}"
   when: threatstack_pkg_version is not defined
 
-- name: Ensure agent specified version is installed
+- name: apt -- Ensure agent specified version is installed
   apt:
     name: "{{ threatstack_pkg }}={{threatstack_pkg_version}}"
     state: "{{ threatstack_pkg_state }}"
   when: threatstack_pkg_version is defined
 
-- name: Stop and disable ThreatStack if not configured
+- name: apt -- Stop and disable agent if not configured
   become: yes
   service:
     name: threatstack

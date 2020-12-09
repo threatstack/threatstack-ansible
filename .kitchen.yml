@@ -1,10 +1,11 @@
 ---
 driver:
-  name: vagrant
+  name: docker
 
 provisioner:
   name: ansible_playbook
   require_ansible_repo: true
+  enable_yum_epel: true
   ansible_verbose: true
   playbook: tests/testkitchen.yml
   hosts: localhost
@@ -31,14 +32,140 @@ provisioner:
     threatstack_feature_plan: "<%= ENV['TS_FEATURE_PLAN'] %>"
     <% end %>
 
-
 platforms:
-  - name: centos-7.5
-    transport:
-      max_ssh_sessions: 6
-  - name: debian-8.11
+  - name: amazon-1
+    driver_config:
+      image: amazonlinux:1
+      platform: amazonlinux
+      run_command: /sbin/init
+      privileged: true
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - yum install -y audit initscripts
+        - sed -i 's/local_events = yes/local_events = no/g' /etc/audit/auditd.conf
+        - chkconfig auditd on
+  - name: amazon-2
+    driver_config:
+      image: amazonlinux:2
+      platform: amazonlinux
+      run_command: /sbin/init
+      privileged: true
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - yum install -y audit initscripts
+        - sed -i 's/local_events = yes/local_events = no/g' /etc/audit/auditd.conf
+        - systemctl enable auditd.service
+    image: centos:7
+  - name: centos-7
+    driver_config:
+      image: centos:7
+      run_command: /sbin/init
+      privileged: true
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - yum install -y audit initscripts
+        - sed -i 's/local_events = yes/local_events = no/g' /etc/audit/auditd.conf
+        - systemctl enable auditd.service
+  - name: centos-8
+    driver_config:
+      image: centos:8
+      run_command: /sbin/init
+      privileged: true
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - yum install -y audit initscripts
+        - sed -i 's/local_events = yes/local_events = no/g' /etc/audit/auditd.conf
+        - systemctl enable auditd.service
+  - name: debian-8
+    driver_config:
+      image: debian:8
+      run_command: /sbin/init
+      cap_add:
+        - SYS_ADMIN
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable ssh.service
+  - name: debian-9
+    driver_config:
+      image: debian:9
+      run_command: /bin/systemd
+      cap_add:
+        - SYS_ADMIN
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable ssh.service
+  - name: debian-10
+    driver_config:
+      image: debian:10
+      run_command: /sbin/init
+      cap_add:
+        - SYS_ADMIN
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable ssh.service
   - name: ubuntu-16.04
+    driver_config:
+      image: ubuntu:16.04
+      run_command: /sbin/init
+      cap_add:
+        - SYS_ADMIN
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable ssh.service
   - name: ubuntu-18.04
+    driver_config:
+      image: ubuntu:18.04
+      run_command: /sbin/init
+      cap_add:
+        - SYS_ADMIN
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable ssh.service
+  - name: ubuntu-20.04
+    driver_config:
+      image: ubuntu:20.04
+      run_command: /sbin/init
+      cap_add:
+        - SYS_ADMIN
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable ssh.service
 
 suites:
   - name: default
