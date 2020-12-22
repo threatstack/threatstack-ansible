@@ -6,31 +6,29 @@ provisioner:
   name: ansible_playbook
   require_ansible_repo: true
   enable_yum_epel: true
-  ansible_verbose: true
-  playbook: tests/testkitchen.yml
+  playbook: test/config/testkitchen.yml
   hosts: localhost
   extra_vars:
     threatstack_deploy_key: <%= ENV['TS_DEPLOY_KEY'] != nil ? ENV['TS_DEPLOY_KEY'] : 'ts_deploy_key' %>
+    <% if ENV['TS_PACKAGE_VERSION'] %>
+    threatstack_pkg: <%= ENV['TS_PACKAGE_VERSION'] %>
+    <% end %>
     <% if ENV['TS_NO_CONFIG_AGENT']  %>
     threatstack_configure_agent: false
     <% end %>
     threatstack_agent_config_args: <%= ENV['TS_CONFIG_ARGS'] %>
-    <% if ENV['TS_PACKAGE_VERSION'] %>
-    # Should be in form threatstack-version=<version>.  ex. threatstack-version=1.4.4.0ubuntu14.0
-    threatstack_pkg: <%= ENV['TS_PACKAGE_VERSION'] %>
-    <% end %>
     <% if ENV['TS_RULE_SETS'] %>
     threatstack_ruleset: "<%= ENV['TS_RULE_SETS'] %>"
-    <% end %>
-    <% if ENV['TS_HOSTNAME'] %>
-    threatstack_hostname: "<%= ENV['TS_HOSTNAME'] %>"
     <% end %>
     <% if ENV['TS_URL'] %>
     threatstack_url: "<%= ENV['TS_URL'] %>"
     <% end %>
-    <% if ENV['TS_FEATURE_PLAN'] %>
-    threatstack_feature_plan: "<%= ENV['TS_FEATURE_PLAN'] %>"
-    <% end %>
+
+# Set this to work around issues with kitchen-ansible erroring out: https://github.com/neillturner/kitchen-ansible/issues/295
+# If you set the `max_ssh_sessions` too high, test-kitchen will crash
+transport:
+  name: ssh
+  max_ssh_sessions: 4
 
 platforms:
   - name: amazon-1
@@ -169,3 +167,7 @@ platforms:
 
 suites:
   - name: default
+  - name: custom
+    provisioner:
+      extra_vars:
+        threatstack_agent_config_args: "--set log.maxSize 22"

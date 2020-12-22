@@ -40,7 +40,7 @@ The following variables are available for override.
 | threatstack_hostname              | String  |                             |           | The display hostname in the Threat Stack UI. Defaults to hostname.                                                                                |
 | threatstack_configure_agent       | Boolean | true                        |           | Set to false to not configure the host, just install the package.                                                                                 |
 | threatstack_agent_extra_args      | String  |                             |           | Pass optional arguments during agent registration.                                                                                                |
-| threatstack_agent_config_args     | String  |                             |           | Pass optional configuration arguments after agent registration.                                                                                   |
+| threatstack_agent_config_args     | String  |                             |           | Pass optional configuration arguments after agent registration. Must include `--set` before each argument in the setting. (Ex. `--set log.level debug --set foo bar`)                                                                                   |
 | threatstack_agent_disable_service | Boolean  | false                       |           | Make sure agent service is disabled and not running after installation                                                                         |
 
 Install
