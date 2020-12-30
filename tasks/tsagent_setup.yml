@@ -1,6 +1,6 @@
 ---
 
-# 2.x agent setup
+# agent setup
 
 - name: Get setup string
   set_fact:
@@ -27,7 +27,7 @@
 
 - name: Get config string
   set_fact:
-    config_string: tsagent config --set {{ threatstack_agent_config_args }}
+    config_string: tsagent config {{ threatstack_agent_config_args }}
 
 - name: Get checksum of config string
   set_fact:

@@ -7,9 +7,6 @@
     threatstack_ruleset:
       - 'Travis Rule Set'
     threatstack_hostname: 'TravisCI_{{timestamp}}'
-    threatstack_config_dir: '/etc/threatstack'
-    threatstack_config: "{{ threatstack_config_dir }}/tsconfig.json"
-    threatstack_feature_plan: i
     test_output: false
   roles:
     - threatstack-ansible

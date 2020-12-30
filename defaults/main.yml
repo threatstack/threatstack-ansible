@@ -1,8 +1,6 @@
 ---
 # defaults file for threatstack
-
 threatstack_url: https://app.threatstack.com
-threatstack_v1_pkg_url: 'https://pkg.threatstack.com'
 threatstack_v2_pkg_url: 'https://pkg.threatstack.com/v2'
 threatstack_pkg_state: present
 threatstack_pkg_validate: yes
@@ -10,14 +8,7 @@ threatstack_pkg_validate: yes
 threatstack_pkg: threatstack-agent
 threatstack_ruleset:
   - 'Base Rule Set'
-threatstack_config_dir: '/etc/threatstack'
-threatstack_config: "{{ threatstack_config_dir }}/tsconfig.json"
 threatstack_configure_agent: true
 threatstack_agent_extra_args:
 threatstack_agent_config_args:
 threatstack_agent_disable_service: false
-
-# Set according to feature plan. https://www.threatstack.com/plans
-# * agent_type="i" - Investigate, Legacy (Basic, Pro, Advanced)
-# * agent_type="m" - Monitor
-agent_type: "{{ threatstack_feature_plan | default('') }}"

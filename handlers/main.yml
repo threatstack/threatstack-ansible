@@ -1,5 +1,2 @@
-- name: restart cloudsight
-  service: name=cloudsight state=restarted
-
 - name: restart tsagent
   service: name=threatstack state=restarted
