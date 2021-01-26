@@ -8,6 +8,7 @@ threatstack_pkg_validate: yes
 threatstack_pkg: threatstack-agent
 threatstack_ruleset:
   - 'Base Rule Set'
+threatstack_hostname:
 threatstack_configure_agent: true
 threatstack_agent_extra_args:
 threatstack_agent_config_args:
