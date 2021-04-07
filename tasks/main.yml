@@ -17,6 +17,20 @@
   include: yum_install.yml
   when: ansible_os_family == 'RedHat'
 
+- name: Get threatstack user info
+  getent:
+    database: passwd
+    key: threatstack
+- debug:
+    var: getent_passwd
+
+- name: Ensure threatstack user homedirectory is owned by user and mode 0750
+  file:
+    path: "{{ getent_passwd['threatstack'][4] }}"
+    mode: '0750'
+    owner: threatstack
+    group: threatstack
+
 - name: agent setup
   include: tsagent_setup.yml
   when:
