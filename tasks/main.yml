@@ -21,8 +21,6 @@
   getent:
     database: passwd
     key: threatstack
-- debug:
-    var: getent_passwd
 
 - name: Ensure threatstack user homedirectory is owned by user and mode 0750
   file:
