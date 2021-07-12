@@ -13,3 +13,4 @@ threatstack_configure_agent: true
 threatstack_agent_extra_args:
 threatstack_agent_config_args:
 threatstack_agent_disable_service: false
+threatstack_test_mode: false

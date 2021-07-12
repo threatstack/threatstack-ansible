@@ -84,7 +84,7 @@
   delay: 2
   until: tsagent_status is succeeded
   changed_when: False
-  when: setup_file.changed or config_file.changed
+  when: (setup_file.changed or config_file.changed) and not threatstack_test_mode
   tags:
     - checkstate
 

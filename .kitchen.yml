@@ -9,6 +9,7 @@ provisioner:
   playbook: test/config/testkitchen.yml
   hosts: localhost
   extra_vars:
+    threatstack_test_mode: true
     threatstack_deploy_key: <%= ENV['TS_DEPLOY_KEY'] != nil ? ENV['TS_DEPLOY_KEY'] : 'ts_deploy_key' %>
     <% if ENV['TS_PACKAGE_VERSION'] %>
     threatstack_pkg: <%= ENV['TS_PACKAGE_VERSION'] %>
@@ -152,6 +153,8 @@ platforms:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable ssh.service
   - name: ubuntu-20.04
+    # provisioner:
+    #   extra_vars:
     driver_config:
       image: ubuntu:20.04
       run_command: /sbin/init
