@@ -60,7 +60,6 @@ platforms:
         - yum install -y audit initscripts
         - sed -i 's/local_events = yes/local_events = no/g' /etc/audit/auditd.conf
         - systemctl enable auditd.service
-    image: centos:7
   - name: centos-7
     driver_config:
       image: centos:7
