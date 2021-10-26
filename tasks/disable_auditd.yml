@@ -3,6 +3,7 @@
   command: service auditd status
   register: auditd_status
   ignore_errors: true
+  changed_when: false
   args:
     warn: no
 
