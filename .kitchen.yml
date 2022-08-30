@@ -28,13 +28,13 @@ provisioner:
 # Set this to work around issues with kitchen-ansible erroring out: https://github.com/neillturner/kitchen-ansible/issues/295
 # If you set the `max_ssh_sessions` too high, test-kitchen will crash
 transport:
-  name: ssh
-  max_ssh_sessions: 4
+  name: docker
 
 platforms:
   - name: amazon-1
     driver_config:
       image: amazonlinux:1
+      docker_platform: linux/amd64
       platform: amazonlinux
       run_command: /sbin/init
       privileged: true
@@ -49,6 +49,7 @@ platforms:
   - name: amazon-2
     driver_config:
       image: amazonlinux:2
+      docker_platform: linux/amd64
       platform: amazonlinux
       run_command: /sbin/init
       privileged: true
@@ -63,6 +64,7 @@ platforms:
   - name: centos-7
     driver_config:
       image: centos:7
+      docker_platform: linux/amd64
       run_command: /sbin/init
       privileged: true
       run_options:
@@ -75,7 +77,8 @@ platforms:
         - systemctl enable auditd.service
   - name: centos-8
     driver_config:
-      image: centos:8
+      image: quay.io/centos/centos:stream8
+      docker_platform: linux/amd64
       run_command: /sbin/init
       privileged: true
       run_options:
@@ -89,6 +92,7 @@ platforms:
   - name: debian-8
     driver_config:
       image: debian:8
+      docker_platform: linux/amd64
       run_command: /sbin/init
       cap_add:
         - SYS_ADMIN
@@ -125,9 +129,9 @@ platforms:
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable ssh.service
-  - name: ubuntu-16.04
+  - name: debian-11
     driver_config:
-      image: ubuntu:16.04
+      image: debian:11
       run_command: /sbin/init
       cap_add:
         - SYS_ADMIN
@@ -138,9 +142,25 @@ platforms:
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable ssh.service
+  - name: ubuntu-16.04
+    driver_config:
+      image: ubuntu:16.04
+      docker_platform: linux/amd64
+      run_command: /sbin/init
+      cap_add:
+        - SYS_ADMIN
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - apt install -y wget
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable ssh.service
   - name: ubuntu-18.04
     driver_config:
       image: ubuntu:18.04
+      docker_platform: linux/amd64
       run_command: /sbin/init
       cap_add:
         - SYS_ADMIN
@@ -156,6 +176,7 @@ platforms:
     #   extra_vars:
     driver_config:
       image: ubuntu:20.04
+      docker_platform: linux/amd64
       run_command: /sbin/init
       cap_add:
         - SYS_ADMIN
@@ -166,7 +187,22 @@ platforms:
       provision_command:
         - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
         - systemctl enable ssh.service
-
+  - name: ubuntu-22.04
+    # provisioner:
+    #   extra_vars:
+    driver_config:
+      image: ubuntu:20.04
+      docker_platform: linux/amd64
+      run_command: /sbin/init
+      cap_add:
+        - SYS_ADMIN
+      run_options:
+        env: container=docker
+      volume:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+      provision_command:
+        - sed -i 's/UsePAM yes/UsePAM no/g' /etc/ssh/sshd_config
+        - systemctl enable ssh.service
 suites:
   - name: default
   - name: custom

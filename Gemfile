@@ -10,4 +10,5 @@ group :system_tests do
   gem 'test-kitchen',       :require => false
   gem 'kitchen-docker',     :require => false
   gem 'kitchen-ansible',    :require => false
+  gem 'kitchen-inspec',     :require => false
 end
