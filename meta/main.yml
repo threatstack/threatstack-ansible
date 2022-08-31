@@ -17,6 +17,7 @@ galaxy_info:
     - 8
     - 9
     - 10
+    - 11
   - name: Amazon
     versions:
     - all
@@ -29,6 +30,7 @@ galaxy_info:
     - xenial
     - bionic
     - focal
+    - jammy
   categories:
   - cloud
   - cloud:ec2
