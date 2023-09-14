@@ -4,19 +4,13 @@
   register: auditd_status
   ignore_errors: true
   changed_when: false
-  args:
-    warn: no
 
 - name: Stop service auditd
   command: service auditd stop
   when: auditd_status.rc == 0
   ignore_errors: "{{ ansible_check_mode }}"
-  args:
-    warn: no
 
 - name: Disable service auditd
   command: systemctl disable auditd
   when: auditd_status.rc == 0
   ignore_errors: "{{ ansible_check_mode }}"
-  args:
-    warn: no
